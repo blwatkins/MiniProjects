@@ -11,9 +11,9 @@ class Bubble {
   }
 
   Bubble(float x, float y, color c) {
-    r = random(10, 50);
+    r = random(10, min(width, height) / 10);
     pos = new PVector(x, y);
-    pos.add(new PVector(random(-50, 50), random(-50, 50)));
+    pos.add(new PVector(random(-width / 10, width / 10), random(-height / 10, -height / 10)));
     this.c = c;
   }
 
@@ -24,12 +24,12 @@ class Bubble {
   }
 
   void move() {
-    pos.add(new PVector(random(-5, 5), random(-5, 5)));
+    pos.add(new PVector(random(-width / 100, width / 100), random(-height/100, height / 100)));
   }
 
   boolean mouseOver() {
 
-    if (abs(pos.x - mouseX) < 50) {
+    if (abs(pos.x - mouseX) < width / 10) {
       return true;
     } else {
       return false;

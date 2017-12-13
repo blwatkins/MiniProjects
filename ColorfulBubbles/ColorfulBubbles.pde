@@ -2,17 +2,21 @@
 
 Bubble[] bubbles;
 
-void setup() {
-  size(500, 500);
-  Color.init(this); // initialize context of static color class
+void settings() {
+  size(displayWidth, displayHeight - 45);
+}
 
-  bubbles = new Bubble[500];
+void setup() {
+  Color.init(this); // initialize context of static color class
+  bubbles = new Bubble[600];
   String[] colors = {"magenta", "cyan", "blue", "red", "green"};
+  int colDivisions = colors.length;
+  int rowDivisions = height / colDivisions;
 
   for (int i = 0; i < bubbles.length; i++) {
-    int x = (i % 5) * width / 4;
-    int y = (i % 100) * 5;
-    bubbles[i] = new Bubble(x, y, Color.getRandomColor(colors[i % 5]));
+    int x = (i % colDivisions) * (width / (colDivisions - 1));
+    int y = (i % rowDivisions) * (colDivisions + 1);
+    bubbles[i] = new Bubble(x, y, Color.getRandomColor(colors[i % colDivisions]));
   }
   
 }
@@ -28,8 +32,4 @@ void draw() {
     
   }
   
-}
-
-void keyPressed() {
-  background(255);
 }
