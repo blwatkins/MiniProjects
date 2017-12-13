@@ -5,10 +5,10 @@ Bubble[] bubbles;
 void setup() {
   size(500, 500);
   Color.init(this); // initialize context of static color class
-  
+
   bubbles = new Bubble[500];
   String[] colors = {"magenta", "cyan", "blue", "red", "green"};
-  
+
   for (int i = 0; i < bubbles.length; i++) {
     int x = (i % 5) * width / 4;
     int y = (i % 100) * 5;
@@ -18,12 +18,12 @@ void setup() {
 }
 
 void draw() {
-  
-  for (Bubble b: bubbles) {
+
+  for (Bubble b : bubbles) {
     b.display();
-    
+
     if (b.mouseOver()) {
-     b.move(); 
+      b.move();
     }
     
   }
@@ -31,5 +31,5 @@ void draw() {
 }
 
 void keyPressed() {
-  background(255); 
+  background(255);
 }

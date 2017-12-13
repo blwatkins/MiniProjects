@@ -28,7 +28,7 @@ class Bubble {
   }
 
   boolean mouseOver() {
-    
+
     if (abs(pos.x - mouseX) < 50) {
       return true;
     } else {
