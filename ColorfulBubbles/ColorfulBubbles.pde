@@ -2,6 +2,7 @@
 // An array of multicolored circles that move based on the mouse position
 
 Bubble[] bubbles;
+boolean trails;
 
 void settings() {
   size(displayWidth, displayHeight - 45);
@@ -10,6 +11,7 @@ void settings() {
 void setup() {
   Color.init(this); // initialize context of static color class
   bubbles = new Bubble[600];
+  trails = true;
   String[] colors = {"magenta", "cyan", "blue", "red", "green"};
   int colDivisions = colors.length;
   int rowDivisions = height / colDivisions;
@@ -19,10 +21,13 @@ void setup() {
     int y = (i % rowDivisions) * (colDivisions + 1);
     bubbles[i] = new Bubble(x, y, Color.getRandomColor(colors[i % colDivisions]));
   }
-  
 }
 
 void draw() {
+
+  if (!trails) {
+    background(255);
+  }
 
   for (Bubble b : bubbles) {
     b.display();
@@ -30,7 +35,9 @@ void draw() {
     if (b.mouseOver()) {
       b.move();
     }
-    
   }
-  
+}
+
+void keyPressed() {
+  trails = !trails;
 }

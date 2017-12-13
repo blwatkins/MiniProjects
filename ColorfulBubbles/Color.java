@@ -50,5 +50,4 @@ public class Color {
     c = p.color(r, g, b);
     return c;
   }
-  
 }

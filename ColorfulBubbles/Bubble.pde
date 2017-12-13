@@ -34,7 +34,5 @@ class Bubble {
     } else {
       return false;
     }
-    
   }
-  
 }
