@@ -17,6 +17,8 @@ function setup() {
         bubbles.push(new Bubble(x, y, getRandomColor(colors[i % colDivisions])));
     }
 
+    createInstructions();
+
 }
 
 function draw() {
@@ -37,5 +39,14 @@ function draw() {
 }
 
 function keyPressed() {
-    trails = !trails
+    if (key == ' ') {
+        trails = !trails
+    }
+}
+
+function createInstructions() {
+    var h1 = createElement("h1", "Instructions");
+    var instructionList = createElement("ul", "");
+    var instruction = createElement("li", "Press the SPACE key to activate or deactivate trails");
+    instruction.parent(instructionList);  
 }
