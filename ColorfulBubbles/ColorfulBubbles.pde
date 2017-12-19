@@ -15,7 +15,7 @@ void setup() {
   String[] colors = {"magenta", "cyan", "blue", "red", "green"};
   int colDivisions = colors.length;
   int rowDivisions = height / colDivisions;
-
+  
   for (int i = 0; i < bubbles.length; i++) {
     int x = (i % colDivisions) * (width / (colDivisions - 1));
     int y = (i % rowDivisions) * (colDivisions + 1);
@@ -24,14 +24,12 @@ void setup() {
 }
 
 void draw() {
-
   if (!trails) {
     background(255);
   }
-
+  
   for (Bubble b : bubbles) {
     b.display();
-
     if (b.mouseOver()) {
       b.move();
     }
@@ -39,5 +37,7 @@ void draw() {
 }
 
 void keyPressed() {
-  trails = !trails;
+  if (key == ' ') {
+    trails = !trails;
+  }
 }

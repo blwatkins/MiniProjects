@@ -1,7 +1,6 @@
 import processing.core.PApplet;
 
 public class Color {
-
   public static PApplet p;
 
   public static void init(PApplet context) {

@@ -1,5 +1,4 @@
 class Bubble {
-
   PVector pos;
   float r;
   color c;
@@ -28,7 +27,6 @@ class Bubble {
   }
 
   boolean mouseOver() {
-
     if (abs(pos.x - mouseX) < width / 10) {
       return true;
     } else {
