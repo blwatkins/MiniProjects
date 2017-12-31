@@ -1,5 +1,6 @@
 // Colorful Bubbles
 // An array of multicolored circles that move based on the mouse position
+// Press the 'a' key to activate and deactivate trails
 
 Bubble[] bubbles;
 boolean trails;

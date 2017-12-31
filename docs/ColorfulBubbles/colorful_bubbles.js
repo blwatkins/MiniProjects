@@ -38,7 +38,7 @@ function draw() {
 
 }
 
-function keyPressed() {
+function keyTyped() {
     if (key == 'a') {
         trails = !trails
     }
@@ -47,6 +47,6 @@ function keyPressed() {
 function createInstructions() {
     var h1 = createElement("h1", "Instructions");
     var instructionList = createElement("ul", "");
-    var instruction = createElement("li", "Press the SPACE key to activate or deactivate trails");
+    var instruction = createElement("li", "Press the 'a' key to activate or deactivate trails");
     instruction.parent(instructionList);  
 }
