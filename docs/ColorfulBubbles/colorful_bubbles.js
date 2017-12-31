@@ -1,6 +1,6 @@
 // Colorful Bubbles sketch
 // An array of multicolored circles that move based on the mouse position
-// Press any key to add or take away trails
+// Press 'a' key to add or take away trails
 
 var bubbles = [];
 var trails = true;
