@@ -9,7 +9,6 @@ void settings() {
 }
 
 void setup() {
-  Color.init(this); // initialize context of static color class
   bubbles = new Bubble[600];
   trails = true;
   String[] colors = {"magenta", "cyan", "blue", "red", "green"};
@@ -19,7 +18,7 @@ void setup() {
   for (int i = 0; i < bubbles.length; i++) {
     int x = (i % colDivisions) * (width / (colDivisions - 1));
     int y = (i % rowDivisions) * (colDivisions + 1);
-    bubbles[i] = new Bubble(x, y, Color.getRandomColor(colors[i % colDivisions]));
+    bubbles[i] = new Bubble(x, y, getRandomColor(colors[i % colDivisions]));
   }
 }
 
@@ -37,7 +36,7 @@ void draw() {
 }
 
 void keyPressed() {
-  if (key == ' ') {
+  if (key == 'a') {
     trails = !trails;
   }
 }
