@@ -1,4 +1,4 @@
-public color getRandomColor(String name) {
+color getRandomColor(String name) {
   color c;
   int r;
   int g;
