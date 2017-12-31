@@ -39,7 +39,7 @@ function draw() {
 }
 
 function keyPressed() {
-    if (key == ' ') {
+    if (key == 'a') {
         trails = !trails
     }
 }
