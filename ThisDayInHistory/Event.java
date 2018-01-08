@@ -32,6 +32,10 @@ public class Event {
     setType(type);
   }
 
+  public int getYear() {
+    return year;
+  }
+
   public void setYear(int year) {
     this.year = year;
     if (year < 0) {
@@ -49,26 +53,26 @@ public class Event {
   private void setBackgroundColor(Type type) {
     switch (type) {
     case EVENT:
-      backgroundColor = p.color(200);
-      textColor = p.color(0);
+      backgroundColor = p.color(288);
       break;
     case BIRTH:
-      backgroundColor = p.color(255);
-      textColor = p.color(0);
+      backgroundColor = p.color(360);
       break;
     case DEATH:
       backgroundColor = p.color(0);
-      textColor = p.color(255);
       break;
     default:
-      backgroundColor = p.color(200);
-      textColor = p.color(0);
+      backgroundColor = p.color(288);
       break;
     }
   }
 
   public int getTextColor() {
     return textColor;
+  }
+
+  public void setTextColor(int textColor) {
+    this.textColor = textColor;
   }
 
   public void display() {

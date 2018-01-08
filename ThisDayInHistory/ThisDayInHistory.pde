@@ -12,12 +12,15 @@ void settings() {
 }
 
 void setup() {
+  colorMode(HSB, 360);
   createEvents();
+  sortEvents();
+  mapEventTextColors();
 }
 
 void draw() {
   background(0);
-  events.get(eventIndex).display();
+  displayCurrentEvent();
   displayIndexText();
 }
 
@@ -86,6 +89,24 @@ int convertYearString(String yearString) throws Exception {
   }
 
   return value;
+}
+
+void sortEvents() {
+  events.sort(EventComparator.Year);
+}
+
+void mapEventTextColors() {
+  int minYear = events.get(0).getYear();
+  int maxYear = events.get(events.size() - 1).getYear();
+
+  for (Event e : events) {
+    color c = mapColor(e.getYear(), minYear, maxYear);
+    e.setTextColor(c);
+  }
+}
+
+void displayCurrentEvent() {
+  events.get(eventIndex).display();
 }
 
 void displayIndexText() {
