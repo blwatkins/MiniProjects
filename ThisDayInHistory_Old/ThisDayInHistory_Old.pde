@@ -1,5 +1,4 @@
 // Brittni Watkins
-// 21 March 2017
 // This Day in History Program generated from JSON Data
 
 import java.util.Arrays;
@@ -196,24 +195,4 @@ int calculateYearVal(String year) {
   }
 
   return val;
-}
-
-int getMaxInt(int[] values) {
-  int max = values[0];
-
-  for (int i = 1; i < values.length; i++) {
-    max = max(max, values[i]);
-  }
-
-  return max;
-}
-
-int getMinInt(int[] values) {
-  int min = values[0];
-
-  for (int i = 1; i < values.length; i++) {
-    min = min(min, values[i]);
-  }
-
-  return min;
 }
