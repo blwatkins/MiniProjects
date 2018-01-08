@@ -4,6 +4,7 @@
 // Today in History JSON Data -> http://history.muffinlabs.com/
 
 ArrayList <Event> events = new ArrayList<Event>();
+int eventIndex;
 
 void settings() {
   //size(displayWidth, displayHeight);
@@ -16,6 +17,22 @@ void setup() {
 
 void draw() {
   background(0);
+  events.get(eventIndex).display();
+  displayIndexText();
+}
+
+void keyPressed() {
+  if (key == 'a') {
+    eventIndex--;
+  } else if (key == 'd') {
+    eventIndex++;
+  }
+
+  if (eventIndex < 0) {
+    eventIndex = events.size() - 1;
+  } else if (eventIndex >= events.size()) {
+    eventIndex = 0;
+  }
 }
 
 void createEvents() {
@@ -30,8 +47,8 @@ void createEvents() {
   JSONArray deaths = data.getJSONArray("Deaths");
 
   createEvents(events, Event.Type.EVENT);
-  //createEvents(births);
-  //createEvents(deaths);
+  createEvents(births, Event.Type.BIRTH);
+  createEvents(deaths, Event.Type.DEATH);
 }
 
 void createEvents(JSONArray eventsArray, Event.Type type) {
@@ -41,9 +58,8 @@ void createEvents(JSONArray eventsArray, Event.Type type) {
       String yearString = current.getString("year");
       String text = current.getString("text");
       int year = convertYearString(yearString);
-      
-      Event e = new Event(this, year, text, type);
-      println(e);
+      Event event = new Event(this, year, text, type);
+      events.add(event);
     } 
     catch (Exception e) {
       println(e);
@@ -58,6 +74,7 @@ int convertYearString(String yearString) throws Exception {
   if (year.length == 1) {
     value = Integer.parseInt(year[0]);
   } else if (year.length == 2) {
+
     if (year[0].equals("AD")) {
       value = Integer.parseInt(year[1]);
     } else if (year[1].equals("BC")) {
@@ -69,4 +86,10 @@ int convertYearString(String yearString) throws Exception {
   }
 
   return value;
+}
+
+void displayIndexText() {
+  textAlign(CENTER, BOTTOM);
+  fill(events.get(eventIndex).getTextColor());
+  text(eventIndex + " / " + events.size(), width / 2, height - 15);
 }
