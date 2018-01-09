@@ -43,25 +43,26 @@ void createEvents() {
   // 1/1 - AD (events)
   // 10/14 - Weird Text thing - deaths
   // 10/17 AD 
-  JSONObject allData = loadJSONObject("http://history.muffinlabs.com/date/1/1");
+  JSONObject allData = loadJSONObject("http://history.muffinlabs.com/date");
   JSONObject data = allData.getJSONObject("data");
   JSONArray events = data.getJSONArray("Events");
   JSONArray births = data.getJSONArray("Births");
   JSONArray deaths = data.getJSONArray("Deaths");
 
   createEvents(events, Event.Type.EVENT);
-  createEvents(births, Event.Type.BIRTH);
-  createEvents(deaths, Event.Type.DEATH);
+  //createEvents(births, Event.Type.BIRTH);
+  //createEvents(deaths, Event.Type.DEATH);
 }
 
 void createEvents(JSONArray eventsArray, Event.Type type) {
-  for (int i = 0; i < eventsArray.size(); i++) {
+  for (int i = 2; i < 3; i++) {
     try {
       JSONObject current = eventsArray.getJSONObject(i);
       String yearString = current.getString("year");
       String text = current.getString("text");
       int year = convertYearString(yearString);
-      Event event = new Event(this, year, text, type);
+      String url = getEventURL(current);
+      Event event = new Event(this, year, text, url, type);
       events.add(event);
     } 
     catch (Exception e) {
@@ -91,6 +92,18 @@ int convertYearString(String yearString) throws Exception {
   return value;
 }
 
+String getEventURL(JSONObject event) {
+  String url = "";
+  try {
+    JSONArray links = event.getJSONArray("links");
+    url = links.getJSONObject(0).getString("link");
+  } 
+  catch (Exception e) {
+    println(e);
+  }
+  return url;
+}
+
 void sortEvents() {
   events.sort(EventComparator.Year);
 }
@@ -112,5 +125,5 @@ void displayCurrentEvent() {
 void displayIndexText() {
   textAlign(CENTER, BOTTOM);
   fill(events.get(eventIndex).getTextColor());
-  text(eventIndex + " / " + events.size(), width / 2, height - 15);
+  text((eventIndex + 1) + " / " + events.size(), width / 2, height - 15);
 }
