@@ -16,6 +16,18 @@ void setup() {
   createEvents();
   sortEvents();
   mapEventTextColors();
+
+  ArrayList<Event> temp = new ArrayList<Event>();
+
+  for (Event e : events) {
+    if (e.image == null) {
+      println("url = " + e.url);
+    } else {
+     temp.add(e); 
+    }
+  }
+  
+  events = temp;
 }
 
 void draw() {
@@ -50,12 +62,12 @@ void createEvents() {
   JSONArray deaths = data.getJSONArray("Deaths");
 
   createEvents(events, Event.Type.EVENT);
-  //createEvents(births, Event.Type.BIRTH);
-  //createEvents(deaths, Event.Type.DEATH);
+  createEvents(births, Event.Type.BIRTH);
+  createEvents(deaths, Event.Type.DEATH);
 }
 
 void createEvents(JSONArray eventsArray, Event.Type type) {
-  for (int i = 2; i < 3; i++) {
+  for (int i = 0; i < eventsArray.size(); i++) {
     try {
       JSONObject current = eventsArray.getJSONObject(i);
       String yearString = current.getString("year");

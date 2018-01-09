@@ -12,12 +12,12 @@ public class Event {
   private String yearString;
   private int year;
   private String text;
-  private String url;
+  public String url;
   private int backgroundColor;
   private int textColor;
   private Type type;
   private PApplet p;
-  private PImage image;
+  public PImage image;
 
   public Event(PApplet p) {
     this.p = p;
@@ -39,10 +39,12 @@ public class Event {
     setType(type);
     image = null;
     try {
-      getImage();
+      if (url != null && !url.equals("")) {
+        getImage();
+      }
     }
     catch (Exception e) {
-      p.println(e);
+      p.println(e + ": " + url);
       image = null;
     }
   }
@@ -100,6 +102,7 @@ public class Event {
     XML[] tableRows = infoBoxTable.getChildren("tr");
 
     String imageURL = null;
+    
     for (int i = 0; i < tableRows.length; i++) {
       XML content = tableRows[i].getChild("td");
 
@@ -110,10 +113,15 @@ public class Event {
         }
       }
     }
+    
+    if (imageURL == null) {
+     imageURL = tableRows[1].getChild("td").getChild("a").getChild("img").getString("src"); 
+    }
 
-    imageURL = "https:" + imageURL;
-
-    image = p.loadImage(imageURL);
+    if (imageURL != null) {
+      imageURL = "https:" + imageURL;
+      image = p.loadImage(imageURL);
+    }
   }
 
   public void setType(Type type) {
@@ -163,7 +171,7 @@ public class Event {
     p.background(backgroundColor);
     if (image != null) {
       p.tint(255, 180);
-      p.image(image, 0, 0, p.height, p.width);
+      p.image(image, p.width / 10, p.height / 10, 8 * p.height / 10, 8 * p.width / 10);
     }
     p.textAlign(p.CENTER, p.CENTER);
     p.textSize(50);
@@ -172,7 +180,6 @@ public class Event {
     p.textSize(20);
     p.textAlign(p.CENTER, p.TOP);
     p.text(text, p.width / 10, 2 * p.height / 10, 4 * p.width / 5, 2 * p.width / 5);
-    
   }
 
   public String toString() {
