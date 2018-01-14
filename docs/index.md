@@ -32,6 +32,6 @@ Project Last Updated: January 13, 2017
 
 Project Began: May 31, 2017
 
-Project Last Updated: January 13, 2017
+Project Last Updated: January 12, 2017
 
 [Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/SpinningShapes)
