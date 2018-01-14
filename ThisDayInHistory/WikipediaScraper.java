@@ -243,7 +243,7 @@ public class WikipediaScraper {
 
   private boolean validTableClass(String className) {
     String[] validClassNames = {"infobox vcard", "infobox biography vcard", "vertical-navbox vcard", 
-      "infobox", "infobox vcard plainlist"};
+      "infobox", "infobox vcard plainlist", "infobox bordered vcard", "vertical-navbox"};
     boolean validClass = false;
 
     for (int i = 0; i < validClassNames.length; i++) {
