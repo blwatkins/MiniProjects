@@ -1,5 +1,5 @@
 // Moving Shapes
-// Multiple shapes moving around the screen
+// Multgiiple shapes moving around the screen
 
 void settings() {
   //size(displayWidth, displayHeight);
