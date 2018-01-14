@@ -21,17 +21,6 @@ void setup() {
   createEvents();
   sortEvents();
   mapEventTextColors();
-
-  ArrayList<Event> temp = new ArrayList<Event>();
-
-  for (Event e : events) {
-
-    if (e.image != null) {
-      temp.add(e);
-    }
-  }
-
-  events = temp;
 }
 
 void draw() {
