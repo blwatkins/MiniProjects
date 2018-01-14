@@ -22,19 +22,19 @@ void setup() {
   sortEvents();
   mapEventTextColors();
 
-  //ArrayList<Event> temp = new ArrayList<Event>();
+  ArrayList<Event> temp = new ArrayList<Event>();
 
-  //for (Event e : events) {
+  for (Event e : events) {
     
-  //  if (e.image == null) {
-  //    println("url = " + e.url);
-  //  } else {
-  //   temp.add(e); 
-  //  }
+    if (e.image == null) {
+      println("url = " + e.url);
+    } else {
+     temp.add(e); 
+    }
     
-  //}
+  }
   
-  //events = temp;
+  events = temp;
 }
 
 void draw() {
@@ -56,7 +56,6 @@ void keyPressed() {
   } else if (eventIndex >= events.size()) {
     eventIndex = 0;
   }
-  
 }
 
 void sortEvents() {

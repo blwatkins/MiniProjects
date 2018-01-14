@@ -9,7 +9,27 @@ public class Event {
   public enum Type {
     EVENT, 
       BIRTH, 
-      DEATH
+      DEATH;
+
+      public static String getTypeText(Type type) {
+      String text = "";
+      switch(type) {
+      case EVENT:
+        text = "event";
+        break;
+      case BIRTH:
+        text = "birth";
+        break;
+      case DEATH:
+        text = "death";
+        break;
+      default:
+        text = "invalid";
+        break;
+      }
+
+      return text;
+    }
   };
 
   private String yearString;
@@ -40,91 +60,8 @@ public class Event {
     this.text = text;
     this.url = url;
     setType(type);
-    image = null;
-    try {
-      if (url != null && !url.equals("")) {
-        getImage();
-      }
-    }
-    catch (Exception e) {
-      p.println(e + ": " + url);
-      image = null;
-    }
-  }
-
-  public void getImage() {
-    XML wikiPage = p.loadXML(url);
-    XML body = wikiPage.getChild("body");
-    XML[] divs = body.getChildren("div");
-
-    XML contentDiv = null;
-    for (int i = 0; i < divs.length; i++) {
-      String id = divs[i].getString("id");
-      if (id != null && id.equals("content")) {
-        contentDiv = divs[i];
-        break;
-      }
-    }
-
-    XML[] contentDivs = contentDiv.getChildren("div");
-    XML bodyContentDiv = null;
-    for (int i = 0; i < contentDivs.length; i++) {
-      String id = contentDivs[i].getString("id");
-      if (id != null && id.equals("bodyContent")) {
-        bodyContentDiv = contentDivs[i];
-        break;
-      }
-    }
-
-    XML[] bodyContentDivs = bodyContentDiv.getChildren("div");
-    XML contentTextDiv = null;
-
-    for (int i = 0; i < bodyContentDivs.length; i++) {
-      String id = bodyContentDivs[i].getString("id");
-
-      if (id != null && id.equals("mw-content-text")) {
-        contentTextDiv = bodyContentDivs[i];
-        break;
-      }
-    }
-
-    XML parserOutputDiv = contentTextDiv.getChild("div");
-
-    XML[] parserOutputTables = parserOutputDiv.getChildren("table");
-    XML infoBoxTable = null;
-
-    for (int i = 0; i < parserOutputTables.length; i++) {
-      String tableClass = parserOutputTables[i].getString("class");
-
-      if (tableClass != null && tableClass.equals("infobox vcard")) {
-        infoBoxTable = parserOutputTables[i];
-        break;
-      }
-    }
-
-    XML[] tableRows = infoBoxTable.getChildren("tr");
-
-    String imageURL = null;
-    
-    for (int i = 0; i < tableRows.length; i++) {
-      XML content = tableRows[i].getChild("td");
-
-      if (content != null) {
-        String contentClass = content.getString("class");
-        if (contentClass != null && contentClass.equals("photo")) {
-          imageURL = tableRows[i].getChild("td").getChild("a").getChild("img").getString("src");
-        }
-      }
-    }
-    
-    if (imageURL == null) {
-     imageURL = tableRows[1].getChild("td").getChild("a").getChild("img").getString("src"); 
-    }
-
-    if (imageURL != null) {
-      imageURL = "https:" + imageURL;
-      image = p.loadImage(imageURL);
-    }
+    WikipediaScraper ws = new WikipediaScraper(p, url);
+    image = ws.getPageImage();
   }
 
   public void setType(Type type) {
@@ -192,27 +129,7 @@ public class Event {
     out += "    " + "year = " + year + "\n";
     out += "    " + "text = " + text + "\n";
     out += "    " + "url = " + url + "\n";
-    out += "    " + "type = " + getTypeText() + "\n";
+    out += "    " + "type = " + Type.getTypeText(type) + "\n";
     return out;
-  }
-
-  public String getTypeText() {
-    String text = "";
-    switch(type) {
-    case EVENT:
-      text = "event";
-      break;
-    case BIRTH:
-      text = "birth";
-      break;
-    case DEATH:
-      text = "death";
-      break;
-    default:
-      text = "invalid";
-      break;
-    }
-
-    return text;
   }
 }
