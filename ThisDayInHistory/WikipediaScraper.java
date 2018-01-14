@@ -24,16 +24,17 @@ public class WikipediaScraper {
       String imageURL = getImageURL();
       //p.println(imageURL);
       boolean validImageURL = isValidImageURL(imageURL);
-      
+
       if (validImageURL) {
-        image = p.loadImage(imageURL); 
+        image = p.loadImage(imageURL);
       } else {
-        p.println("INVALID IMAGE URL: " + url);
+        p.println("INVALID IMAGE URL: " + imageURL + "; url: " + url);
       }
     } 
     catch (Exception e) {
       //p.println(e);
       //p.println("    " + url);
+      //p.print(e + " ");
       p.println(url);
     }
 
@@ -52,8 +53,28 @@ public class WikipediaScraper {
       XML contentTextDiv = getContentTextDiv(bodyContentDiv);
       XML parserOutputDiv = getParserOutputDiv(contentTextDiv);
       XML infoBoxTable = getInfoBoxTable(parserOutputDiv);
-      XML[] tableRows = getInfoBoxTableRows(infoBoxTable);
-      imageURL = getImageURLFromTableRows(tableRows);
+
+      if (infoBoxTable == null) {
+        XML rightThumb = getRightThumb(parserOutputDiv);
+
+        if (rightThumb != null) {
+          imageURL = getImageURLFromRightThumb(rightThumb);
+        } else {
+          XML stackDiv = getStackDiv(parserOutputDiv);
+          XML stackTableDiv = getStackTableDiv(stackDiv);
+          XML stackTable = getInfoBoxTable(stackTableDiv);
+          XML[] stackTableRows = getInfoBoxTableRows(stackTable);
+          imageURL = getImageURLFromTableRows(stackTableRows);
+        }
+      } else {
+        XML[] tableRows = getInfoBoxTableRows(infoBoxTable);
+        imageURL = getImageURLFromTableRows(tableRows);
+
+        if (imageURL == null) {
+          XML rightThumb = getRightThumb(parserOutputDiv);
+          imageURL = getImageURLFromRightThumb(rightThumb);
+        }
+      }
     } else {
       p.println("INVALID URL: " + url);
     }
@@ -78,10 +99,10 @@ public class WikipediaScraper {
 
     return validURL;
   }
-  
+
   private boolean isValidImageURL(String url) {
     boolean validURL = true;
-    
+
     if (url == null) {
       validURL = false;
     } else if (url.equals("")) {
@@ -94,7 +115,7 @@ public class WikipediaScraper {
       }
     }
 
-    return validURL; 
+    return validURL;
   }
 
   private XML getBody(XML wikiPage) {
@@ -149,16 +170,42 @@ public class WikipediaScraper {
     return parserOutputDiv;
   }
 
+  private XML getStackDiv(XML parserOutputDiv) {
+    XML[] parserOutputDivs = parserOutputDiv.getChildren("div");
+    XML stackDiv = null;
+
+    for (int i = 0; i < parserOutputDivs.length; i++) {
+      String divClass = parserOutputDivs[i].getString("class");
+
+      if (divClass != null && divClass.equals("mw-stack mobile-float-reset")) {
+        stackDiv = parserOutputDivs[i];
+        break;
+      }
+    }
+
+    return stackDiv;
+  }
+
+  private XML getStackTableDiv(XML stackDiv) {
+    XML stackTableDiv = stackDiv.getChild("div");
+    return stackTableDiv;
+  }
+
   private XML getInfoBoxTable(XML parserOutputDiv) {
-    XML[] parserOutputTables = parserOutputDiv.getChildren("table");
+    XML[] parserOutputTables = parserOutputDiv.getChildren("table");    
     XML infoBoxTable = null;
 
     for (int i = 0; i < parserOutputTables.length; i++) {
       String tableClass = parserOutputTables[i].getString("class");
 
-      if (tableClass != null && tableClass.equals("infobox vcard")) {
-        infoBoxTable = parserOutputTables[i];
-        break;
+      if (tableClass != null) {
+        if (validTableClass(tableClass)) {
+          infoBoxTable = parserOutputTables[i];
+          break;
+        } else if (tableClass.equals("mw-stack mobile-float-reset")) {
+          infoBoxTable = getTableFromStackTable(parserOutputTables[i]);
+          break;
+        }
       }
     }
 
@@ -166,33 +213,118 @@ public class WikipediaScraper {
   }
 
   private XML[] getInfoBoxTableRows(XML infoBoxTable) {
-    XML[] tableRows = infoBoxTable.getChildren("tr");
+    XML tableBody = infoBoxTable.getChild("tbody");
+    XML[] tableRows = null;
+
+    if (tableBody == null) {
+      tableRows = infoBoxTable.getChildren("tr");
+    } else {
+      tableRows = tableBody.getChildren("tr");
+    }
+
     return tableRows;
   }
+
+  private XML getTableFromStackTable(XML table) {
+    XML[] stackTableRows = null;
+
+    XML stackTableBody = table.getChild("tbody");
+
+    if (stackTableBody == null) {
+      stackTableRows = table.getChildren("tr");
+    } else {
+      stackTableRows = stackTableBody.getChildren("tr");
+    }
+
+    XML mainTable = stackTableRows[0].getChild("td").getChild("table");
+
+    return mainTable;
+  }
+
+  private boolean validTableClass(String className) {
+    String[] validClassNames = {"infobox vcard", "infobox biography vcard", "vertical-navbox vcard", 
+      "infobox", "infobox vcard plainlist"};
+    boolean validClass = false;
+
+    for (int i = 0; i < validClassNames.length; i++) {
+      if (className.equals(validClassNames[i])) {
+        validClass = true;
+        break;
+      }
+    }
+
+    return validClass;
+  }
+
+  private XML getRightThumb(XML parserOutputDiv) {
+    XML[] parserOutputDivs = parserOutputDiv.getChildren("div");
+
+    XML rightThumb = null;
+
+    for (int i = 0; i < parserOutputDivs.length; i++) {
+      String divClass = parserOutputDivs[i].getString("class");
+
+      if (divClass != null && divClass.equals("thumb tright")) {
+        rightThumb = parserOutputDivs[i];
+        break;
+      }
+    }
+
+    return rightThumb;
+  }
+
+
 
   private String getImageURLFromTableRows(XML[] infoBoxTableRows) {
     String imageURL = null;
 
     for (int i = 0; i < infoBoxTableRows.length; i++) {
       XML content = infoBoxTableRows[i].getChild("td");
-
       if (content != null) {
-        String contentClass = content.getString("class");
-        if (contentClass != null && contentClass.equals("photo")) {
-          imageURL = infoBoxTableRows[i].getChild("td").getChild("a").getChild("img").getString("src");
+        imageURL = getImageURL(content);
+        if (imageURL != null) {
+          break;
         }
       }
     }
 
-    if (imageURL == null) {
-      imageURL = infoBoxTableRows[1].getChild("td").getChild("a").getChild("img").getString("src");
-    }
-
-    if (imageURL != null) {
-      imageURL = "https:" + imageURL;
-    }
-    
     return imageURL;
   }
-  
+
+  private String getImageURLFromRightThumb(XML rightThumb) {
+    String imageURL = null;
+
+    XML innerThumb = rightThumb.getChild("div");
+    imageURL = getImageURL(innerThumb);
+
+    return imageURL;
+  }
+
+  private String getImageURL(XML linkParent) {
+
+    if (linkParent != null) {
+      XML imageLink = linkParent.getChild("a");
+      String imageURL = null;
+
+      if (imageLink != null) {
+        XML image = imageLink.getChild("img");
+
+        if (image != null) {
+          imageURL = image.getString("src");
+
+          if (imageURL == null) {
+            imageURL = image.getString("alt src");
+          }
+        }
+      }
+
+      if (imageURL != null) {
+        imageURL = "https:" + imageURL;
+      }
+
+      return imageURL;
+    } else {
+      return null;
+    }
+  }
 }

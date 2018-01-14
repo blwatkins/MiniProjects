@@ -3,7 +3,7 @@
 // Images are obtained by scraping the Wikapedia webpage of the first topic listed in the data
 // Generated from JSON Data
 // Sources
-  // Today in History JSON Data -> http://history.muffinlabs.com/
+// Today in History JSON Data -> http://history.muffinlabs.com/
 // TO DO: Check if any events have a null url, if so, are they thrown out (should not be)
 // TO DO: Check pages where image is null, look at changes in page structure
 // TO DO: Build external class for getting images from Wikapedia
@@ -25,15 +25,12 @@ void setup() {
   ArrayList<Event> temp = new ArrayList<Event>();
 
   for (Event e : events) {
-    
-    if (e.image == null) {
-      println("url = " + e.url);
-    } else {
-     temp.add(e); 
+
+    if (e.image != null) {
+      temp.add(e);
     }
-    
   }
-  
+
   events = temp;
 }
 
@@ -44,7 +41,7 @@ void draw() {
 }
 
 void keyPressed() {
-  
+
   if (key == 'a') {
     eventIndex--;
   } else if (key == 'd') {
@@ -70,7 +67,6 @@ void mapEventTextColors() {
     color c = mapColor(e.getYear(), minYear, maxYear);
     e.setTextColor(c);
   }
-  
 }
 
 void displayCurrentEvent() {
