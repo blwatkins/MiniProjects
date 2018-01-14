@@ -1,7 +1,12 @@
 // This Day in History
+// A series of slides describing events that occured on this day in history
+// Images are obtained by scraping the Wikapedia webpage of the first topic listed in the data
 // Generated from JSON Data
 // Sources
-// Today in History JSON Data -> http://history.muffinlabs.com/
+  // Today in History JSON Data -> http://history.muffinlabs.com/
+// TO DO: Check if any events have a null url, if so, are they thrown out (should not be)
+// TO DO: Check pages where image is null, look at changes in page structure
+// TO DO: Build external class for getting images from Wikapedia
 
 ArrayList <Event> events = new ArrayList<Event>();
 int eventIndex;
@@ -20,11 +25,13 @@ void setup() {
   ArrayList<Event> temp = new ArrayList<Event>();
 
   for (Event e : events) {
+    
     if (e.image == null) {
       println("url = " + e.url);
     } else {
      temp.add(e); 
     }
+    
   }
   
   events = temp;
@@ -37,6 +44,7 @@ void draw() {
 }
 
 void keyPressed() {
+  
   if (key == 'a') {
     eventIndex--;
   } else if (key == 'd') {
@@ -48,6 +56,7 @@ void keyPressed() {
   } else if (eventIndex >= events.size()) {
     eventIndex = 0;
   }
+  
 }
 
 void createEvents() {
@@ -67,7 +76,9 @@ void createEvents() {
 }
 
 void createEvents(JSONArray eventsArray, Event.Type type) {
+  
   for (int i = 0; i < eventsArray.size(); i++) {
+    
     try {
       JSONObject current = eventsArray.getJSONObject(i);
       String yearString = current.getString("year");
@@ -76,11 +87,12 @@ void createEvents(JSONArray eventsArray, Event.Type type) {
       String url = getEventURL(current);
       Event event = new Event(this, year, text, url, type);
       events.add(event);
-    } 
-    catch (Exception e) {
+    } catch (Exception e) {
       println(e);
     }
+    
   }
+  
 }
 
 int convertYearString(String yearString) throws Exception {
@@ -97,6 +109,7 @@ int convertYearString(String yearString) throws Exception {
       value = Integer.parseInt(year[0]);
       value *= -1;
     }
+    
   } else {
     throw new NumberFormatException("For input string: " + yearString);
   }
@@ -106,6 +119,7 @@ int convertYearString(String yearString) throws Exception {
 
 String getEventURL(JSONObject event) {
   String url = "";
+  
   try {
     JSONArray links = event.getJSONArray("links");
     url = links.getJSONObject(0).getString("link");
@@ -113,6 +127,7 @@ String getEventURL(JSONObject event) {
   catch (Exception e) {
     println(e);
   }
+  
   return url;
 }
 
@@ -128,6 +143,7 @@ void mapEventTextColors() {
     color c = mapColor(e.getYear(), minYear, maxYear);
     e.setTextColor(c);
   }
+  
 }
 
 void displayCurrentEvent() {

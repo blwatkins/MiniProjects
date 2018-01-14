@@ -1,5 +1,4 @@
 // Moving Shapes
-// Multiple shapes moving around the screen
 // Polygon class 
 
 import processing.core.*;

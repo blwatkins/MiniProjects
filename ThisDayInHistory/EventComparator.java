@@ -1,3 +1,7 @@
+// This Day in History
+// EventComparator class
+// Used to sort all events by the year they occured
+
 import java.util.Comparator;
 
 public class EventComparator {

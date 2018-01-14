@@ -1,3 +1,6 @@
+// This Day in History
+// Event Class
+
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.data.XML;
