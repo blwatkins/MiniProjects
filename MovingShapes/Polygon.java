@@ -53,6 +53,7 @@ public class Polygon {
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
     this.radius = radius;
+    checkRadius();
     fillColor = p.color(255);
     strokeColor = p.color(0);
     createPoints();
@@ -67,7 +68,12 @@ public class Polygon {
     if (type == ShapeType.STAR) {
       pointCount *= 2;
     }
-    
+  }
+
+  private void checkRadius() {
+    if (radius <= 0) {
+      radius = 10;
+    }
   }
 
   private void createPoints() {
@@ -75,7 +81,7 @@ public class Polygon {
     float deltaTheta = TWO_PI / pointCount;
     switch(type) {
     case POLYGON:
-      createPolygonPoints();
+      createPolygonPoints(deltaTheta);
       break;
     case STAR:
       break;
