@@ -7,7 +7,6 @@ import processing.core.PImage;
 import processing.data.XML;
 
 public class WikipediaScraper {
-
   private PApplet p;
   private String url;
 
@@ -125,36 +124,35 @@ public class WikipediaScraper {
 
   private XML getContentDiv(XML body) {
     XML[] divs = body.getChildren("div");
-
     XML contentDiv = null;
-    
+
     for (int i = 0; i < divs.length; i++) {
       String id = divs[i].getString("id");
-      
+
       if (id != null && id.equals("content")) {
         contentDiv = divs[i];
         break;
       }
       
     }
-    
+
     return contentDiv;
   }
 
   private XML getBodyContentDiv(XML contentDiv) {
     XML[] contentDivs = contentDiv.getChildren("div");
     XML bodyContentDiv = null;
-    
+
     for (int i = 0; i < contentDivs.length; i++) {
       String id = contentDivs[i].getString("id");
-      
+
       if (id != null && id.equals("bodyContent")) {
         bodyContentDiv = contentDivs[i];
         break;
       }
       
     }
-    
+
     return bodyContentDiv;
   }
 
@@ -164,7 +162,7 @@ public class WikipediaScraper {
 
     for (int i = 0; i < bodyContentDivs.length; i++) {
       String id = bodyContentDivs[i].getString("id");
-      
+
       if (id != null && id.equals("mw-content-text")) {
         contentTextDiv = bodyContentDivs[i];
         break;
@@ -210,7 +208,7 @@ public class WikipediaScraper {
       String tableClass = parserOutputTables[i].getString("class");
 
       if (tableClass != null) {
-        
+
         if (validTableClass(tableClass)) {
           infoBoxTable = parserOutputTables[i];
           break;
@@ -259,7 +257,7 @@ public class WikipediaScraper {
     boolean validClass = false;
 
     for (int i = 0; i < validClassNames.length; i++) {
-      
+
       if (className.equals(validClassNames[i])) {
         validClass = true;
         break;
@@ -294,10 +292,10 @@ public class WikipediaScraper {
 
     for (int i = 0; i < infoBoxTableRows.length; i++) {
       XML content = infoBoxTableRows[i].getChild("td");
-      
+
       if (content != null) {
         imageURL = getImageURL(content);
-        
+
         if (imageURL != null) {
           break;
         }
