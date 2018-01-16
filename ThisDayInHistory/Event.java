@@ -6,6 +6,7 @@ import processing.core.PImage;
 import processing.data.XML;
 
 public class Event {
+  
   public enum Type {
     EVENT, 
       BIRTH, 
@@ -31,10 +32,12 @@ public class Event {
       default:
         text = "invalid";
         break;
+        
       }
 
       return text;
     }
+    
   };
 
   private String yearString;
@@ -86,24 +89,31 @@ public class Event {
     } else {
       this.yearString =  new Integer(year).toString();
     }
+    
   }
 
   private void setBackgroundColor(Type type) {
 
     switch (type) {
+      
     case EVENT:
       backgroundColor = p.color(288);
       break;
+      
     case BIRTH:
       backgroundColor = p.color(360);
       break;
+      
     case DEATH:
       backgroundColor = p.color(0);
       break;
+      
     default:
       backgroundColor = p.color(288);
       break;
+      
     }
+    
   }
 
   public int getTextColor() {
@@ -132,6 +142,7 @@ public class Event {
       p.tint(255, 200);
       p.image(image, p.width / 10, p.height / 10, 8 * p.width / 10, 8 * p.height / 10);
     }
+    
   }
 
   public String toString() {
@@ -144,4 +155,5 @@ public class Event {
     out += "    " + "type = " + Type.getTypeText(type) + "\n";
     return out;
   }
+  
 }
