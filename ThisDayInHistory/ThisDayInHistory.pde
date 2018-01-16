@@ -7,10 +7,12 @@
 
 ArrayList <Event> events = new ArrayList<Event>();
 int eventIndex;
+int startTime;
+int endTime;
 
 void settings() {
-  //size(displayWidth, displayHeight);
-  size(800, 800);
+  size(displayWidth, displayHeight - 45);
+  //size(800, 800);
 }
 
 void setup() {
@@ -18,26 +20,56 @@ void setup() {
   createEvents();
   sortEvents();
   mapEventTextColors();
+  startTime = 0;
+  endTime = 10000;
 }
 
 void draw() {
   background(0);
   displayCurrentEvent();
   displayIndexText();
+  timer();
 }
 
 void keyPressed() {
 
   if (key == 'a') {
-    eventIndex--;
+    decreaseEventIndex();
+    resetTimer();
   } else if (key == 'd') {
-    eventIndex++;
+    increaseEventIndex();
+    resetTimer();
   }
+}
+
+void timer() {
+
+  if (millis() > endTime) {
+    increaseEventIndex();
+    resetTimer();
+  }
+  
+}
+
+void resetTimer() {
+  int deltaTime = 10000;
+  startTime = millis();
+  endTime = startTime + deltaTime;
+}
+
+void increaseEventIndex() {
+  eventIndex++;
+
+  if (eventIndex >= events.size()) {
+    eventIndex = 0;
+  }
+}
+
+void decreaseEventIndex() {
+  eventIndex--;
 
   if (eventIndex < 0) {
     eventIndex = events.size() - 1;
-  } else if (eventIndex >= events.size()) {
-    eventIndex = 0;
   }
 }
 

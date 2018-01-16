@@ -40,6 +40,7 @@ ColorType getRandomColorType() {
   default:
     choice = ColorType.RAINBOW;
     break;
+    
   }
 
   return choice;
@@ -71,7 +72,9 @@ color mapColor(ColorType type, float num, float min, float max) {
     break;
 
   default:
+    hue = 0;
     break;
+    
   }
 
   return color(hue, 360, 360);

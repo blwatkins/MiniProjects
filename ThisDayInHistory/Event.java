@@ -11,18 +11,23 @@ public class Event {
       BIRTH, 
       DEATH;
 
-      public static String getTypeText(Type type) {
+    public static String getTypeText(Type type) {
       String text = "";
+
       switch(type) {
+
       case EVENT:
         text = "event";
         break;
+
       case BIRTH:
         text = "birth";
         break;
+
       case DEATH:
         text = "death";
         break;
+
       default:
         text = "invalid";
         break;
@@ -35,12 +40,12 @@ public class Event {
   private String yearString;
   private int year;
   private String text;
-  public String url;
+  private String url;
   private int backgroundColor;
   private int textColor;
   private Type type;
   private PApplet p;
-  public PImage image;
+  private PImage image;
 
   public Event(PApplet p) {
     this.p = p;
@@ -64,7 +69,7 @@ public class Event {
     image = ws.getPageImage();
   }
 
-  public void setType(Type type) {
+  private void setType(Type type) {
     this.type = type;
     setBackgroundColor(type);
   }
@@ -73,8 +78,9 @@ public class Event {
     return year;
   }
 
-  public void setYear(int year) {
+  private void setYear(int year) {
     this.year = year;
+
     if (year < 0) {
       this.yearString = (year * -1) + " BC";
     } else {
@@ -83,6 +89,7 @@ public class Event {
   }
 
   private void setBackgroundColor(Type type) {
+
     switch (type) {
     case EVENT:
       backgroundColor = p.color(288);
@@ -109,10 +116,7 @@ public class Event {
 
   public void display() {
     p.background(backgroundColor);
-    if (image != null) {
-      p.tint(255, 180);
-      p.image(image, p.width / 10, p.height / 10, 8 * p.height / 10, 8 * p.width / 10);
-    }
+    displayImage();
     p.textAlign(p.CENTER, p.CENTER);
     p.textSize(50);
     p.fill(textColor);
@@ -120,6 +124,14 @@ public class Event {
     p.textSize(20);
     p.textAlign(p.CENTER, p.TOP);
     p.text(text, p.width / 10, 2 * p.height / 10, 4 * p.width / 5, 2 * p.width / 5);
+  }
+
+  private void displayImage() {
+
+    if (image != null) {
+      p.tint(255, 200);
+      p.image(image, p.width / 10, p.height / 10, 8 * p.width / 10, 8 * p.height / 10);
+    }
   }
 
   public String toString() {

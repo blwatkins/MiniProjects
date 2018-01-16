@@ -2,16 +2,11 @@
 // Data Processing Functions for http://history.muffinlabs.com/date
 
 void createEvents() {
-  // 10/15 - BC
-  // 1/1 - AD (events)
-  // 10/14 - Weird Text thing - deaths
-  // 10/17 AD 
   JSONObject allData = loadJSONObject("http://history.muffinlabs.com/date");
   JSONObject data = allData.getJSONObject("data");
   JSONArray events = data.getJSONArray("Events");
   JSONArray births = data.getJSONArray("Births");
   JSONArray deaths = data.getJSONArray("Deaths");
-
   createEvents(events, Event.Type.EVENT);
   createEvents(births, Event.Type.BIRTH);
   createEvents(deaths, Event.Type.DEATH);

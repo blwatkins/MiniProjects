@@ -2,7 +2,6 @@
 // WikipediaScraper class
 // This class is designed to scrape Wikipedia pages to find the page image sources
 
-
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.data.XML;
@@ -22,7 +21,6 @@ public class WikipediaScraper {
 
     try {
       String imageURL = getImageURL();
-      //p.println(imageURL);
       boolean validImageURL = isValidImageURL(imageURL);
 
       if (validImageURL) {
@@ -30,12 +28,9 @@ public class WikipediaScraper {
       } else {
         p.println("INVALID IMAGE URL: " + imageURL + "; url: " + url);
       }
-    } 
-    catch (Exception e) {
-      //p.println(e);
-      //p.println("    " + url);
-      //p.print(e + " ");
-      p.println(url);
+      
+    } catch (Exception e) {
+      p.println(e + ": " + url);
     }
 
     return image;
@@ -66,6 +61,7 @@ public class WikipediaScraper {
           XML[] stackTableRows = getInfoBoxTableRows(stackTable);
           imageURL = getImageURLFromTableRows(stackTableRows);
         }
+        
       } else {
         XML[] tableRows = getInfoBoxTableRows(infoBoxTable);
         imageURL = getImageURLFromTableRows(tableRows);
@@ -74,7 +70,9 @@ public class WikipediaScraper {
           XML rightThumb = getRightThumb(parserOutputDiv);
           imageURL = getImageURLFromRightThumb(rightThumb);
         }
+        
       }
+      
     } else {
       p.println("INVALID URL: " + url);
     }
@@ -95,6 +93,7 @@ public class WikipediaScraper {
       if (!urlBase.equals("https://wikipedia.org/wiki/")) {
         validURL = false;
       }
+      
     }
 
     return validURL;
@@ -113,6 +112,7 @@ public class WikipediaScraper {
       if (!urlBase.equals("https://upload.wikimedia.org/wikipedia/")) {
         validURL = false;
       }
+      
     }
 
     return validURL;
@@ -127,26 +127,34 @@ public class WikipediaScraper {
     XML[] divs = body.getChildren("div");
 
     XML contentDiv = null;
+    
     for (int i = 0; i < divs.length; i++) {
       String id = divs[i].getString("id");
+      
       if (id != null && id.equals("content")) {
         contentDiv = divs[i];
         break;
       }
+      
     }
+    
     return contentDiv;
   }
 
   private XML getBodyContentDiv(XML contentDiv) {
     XML[] contentDivs = contentDiv.getChildren("div");
     XML bodyContentDiv = null;
+    
     for (int i = 0; i < contentDivs.length; i++) {
       String id = contentDivs[i].getString("id");
+      
       if (id != null && id.equals("bodyContent")) {
         bodyContentDiv = contentDivs[i];
         break;
       }
+      
     }
+    
     return bodyContentDiv;
   }
 
@@ -156,10 +164,12 @@ public class WikipediaScraper {
 
     for (int i = 0; i < bodyContentDivs.length; i++) {
       String id = bodyContentDivs[i].getString("id");
+      
       if (id != null && id.equals("mw-content-text")) {
         contentTextDiv = bodyContentDivs[i];
         break;
       }
+      
     }
 
     return contentTextDiv;
@@ -181,6 +191,7 @@ public class WikipediaScraper {
         stackDiv = parserOutputDivs[i];
         break;
       }
+      
     }
 
     return stackDiv;
@@ -199,6 +210,7 @@ public class WikipediaScraper {
       String tableClass = parserOutputTables[i].getString("class");
 
       if (tableClass != null) {
+        
         if (validTableClass(tableClass)) {
           infoBoxTable = parserOutputTables[i];
           break;
@@ -206,7 +218,9 @@ public class WikipediaScraper {
           infoBoxTable = getTableFromStackTable(parserOutputTables[i]);
           break;
         }
+        
       }
+      
     }
 
     return infoBoxTable;
@@ -227,7 +241,6 @@ public class WikipediaScraper {
 
   private XML getTableFromStackTable(XML table) {
     XML[] stackTableRows = null;
-
     XML stackTableBody = table.getChild("tbody");
 
     if (stackTableBody == null) {
@@ -237,7 +250,6 @@ public class WikipediaScraper {
     }
 
     XML mainTable = stackTableRows[0].getChild("td").getChild("table");
-
     return mainTable;
   }
 
@@ -247,10 +259,12 @@ public class WikipediaScraper {
     boolean validClass = false;
 
     for (int i = 0; i < validClassNames.length; i++) {
+      
       if (className.equals(validClassNames[i])) {
         validClass = true;
         break;
       }
+      
     }
 
     return validClass;
@@ -258,7 +272,6 @@ public class WikipediaScraper {
 
   private XML getRightThumb(XML parserOutputDiv) {
     XML[] parserOutputDivs = parserOutputDiv.getChildren("div");
-
     XML rightThumb = null;
 
     for (int i = 0; i < parserOutputDivs.length; i++) {
@@ -268,6 +281,7 @@ public class WikipediaScraper {
         rightThumb = parserOutputDivs[i];
         break;
       }
+      
     }
 
     return rightThumb;
@@ -280,12 +294,16 @@ public class WikipediaScraper {
 
     for (int i = 0; i < infoBoxTableRows.length; i++) {
       XML content = infoBoxTableRows[i].getChild("td");
+      
       if (content != null) {
         imageURL = getImageURL(content);
+        
         if (imageURL != null) {
           break;
         }
+        
       }
+      
     }
 
     return imageURL;
@@ -293,10 +311,8 @@ public class WikipediaScraper {
 
   private String getImageURLFromRightThumb(XML rightThumb) {
     String imageURL = null;
-
     XML innerThumb = rightThumb.getChild("div");
     imageURL = getImageURL(innerThumb);
-
     return imageURL;
   }
 
@@ -315,7 +331,9 @@ public class WikipediaScraper {
           if (imageURL == null) {
             imageURL = image.getString("alt src");
           }
+          
         }
+        
       }
 
       if (imageURL != null) {
@@ -326,5 +344,7 @@ public class WikipediaScraper {
     } else {
       return null;
     }
+    
   }
+  
 }
