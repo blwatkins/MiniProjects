@@ -11,8 +11,8 @@ int startTime;
 int endTime;
 
 void settings() {
-  size(displayWidth, displayHeight - 45);
-  //size(800, 800);
+  //size(displayWidth, displayHeight - 45);
+  size(800, 800);
 }
 
 void setup() {
