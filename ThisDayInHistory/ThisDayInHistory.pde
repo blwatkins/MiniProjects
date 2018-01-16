@@ -20,8 +20,7 @@ void setup() {
   createEvents();
   sortEvents();
   mapEventTextColors();
-  startTime = 0;
-  endTime = 10000;
+  resetTimer();
 }
 
 void draw() {
@@ -40,6 +39,7 @@ void keyPressed() {
     increaseEventIndex();
     resetTimer();
   }
+  
 }
 
 void timer() {
@@ -63,6 +63,7 @@ void increaseEventIndex() {
   if (eventIndex >= events.size()) {
     eventIndex = 0;
   }
+  
 }
 
 void decreaseEventIndex() {
@@ -71,6 +72,7 @@ void decreaseEventIndex() {
   if (eventIndex < 0) {
     eventIndex = events.size() - 1;
   }
+  
 }
 
 void sortEvents() {
@@ -85,6 +87,7 @@ void mapEventTextColors() {
     color c = mapColor(e.getYear(), minYear, maxYear);
     e.setTextColor(c);
   }
+  
 }
 
 void displayCurrentEvent() {
