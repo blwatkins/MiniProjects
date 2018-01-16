@@ -13,9 +13,9 @@ void createEvents() {
 }
 
 void createEvents(JSONArray eventsArray, Event.Type type) {
-  
+
   for (int i = 0; i < eventsArray.size(); i++) {
-    
+
     try {
       JSONObject current = eventsArray.getJSONObject(i);
       String yearString = current.getString("year");
@@ -56,14 +56,13 @@ int convertYearString(String yearString) throws Exception {
 
 String getEventURL(JSONObject event) {
   String url = "";
-  
+
   try {
     JSONArray links = event.getJSONArray("links");
     url = links.getJSONObject(0).getString("link");
-  } 
-  catch (Exception e) {
+  } catch (Exception e) {
     println(e);
   }
-  
+
   return url;
 }
