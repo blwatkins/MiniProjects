@@ -4,9 +4,6 @@
 // Generated from JSON Data
 // Sources
 // Today in History JSON Data -> http://history.muffinlabs.com/
-// TO DO: Check if any events have a null url, if so, are they thrown out (should not be)
-// TO DO: Check pages where image is null, look at changes in page structure
-// TO DO: Build external class for getting images from Wikapedia
 
 ArrayList <Event> events = new ArrayList<Event>();
 int eventIndex;
