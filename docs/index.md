@@ -8,7 +8,7 @@ Project Last Updated: December 31, 2017
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7uNn9-0Eb1E" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 
-[Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/ColorfulBubbles)
+[Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/Colorful_Bubbles)
 
 [p5.js Code](https://github.com/blwatkins/MiniProjects/tree/master/docs/ColorfulBubbles)
 
@@ -20,4 +20,4 @@ Project Last Updated: January 14, 2017
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/R_a83uiELcI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-[Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/ThisDayInHistory)
+[Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/This_Day_In_History)
