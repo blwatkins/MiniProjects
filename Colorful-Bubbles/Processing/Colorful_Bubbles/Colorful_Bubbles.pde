@@ -10,7 +10,7 @@ void settings() {
 }
 
 void setup() {
-  bubbles = new Bubble[600];
+  bubbles = new Bubble[400];
   trails = true;
   String[] colors = {"magenta", "cyan", "blue", "red", "green"};
   int colDivisions = colors.length;
