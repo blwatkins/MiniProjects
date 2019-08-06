@@ -1,3 +1,7 @@
+// Main Class
+// Drawing With Noise
+// Started: 6 August 2019
+
 import processing.core.PApplet;
 
 public class DrawingWithNoise extends PApplet{
@@ -21,6 +25,11 @@ public class DrawingWithNoise extends PApplet{
     }
 
     public void draw() {
+        float diam = 50;
+        float x = random(mouseX - diam, mouseX + diam);
+        float y = random(mouseY - diam, mouseY + diam);
+        Point p = new Point(this, x, y);
+        p.display();
         line(pmouseX, pmouseY, mouseX, mouseY);
     }
 
