@@ -21,19 +21,3 @@ Project Last Updated: January 14, 2017
 <iframe width="560" height="315" src="https://www.youtube.com/embed/R_a83uiELcI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 [Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/ThisDayInHistory)
-
-## Moving Shapes
-
-Project Began: June 7, 2017
-
-Project Last Updated: January 13, 2017
-
-[Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/MovingShapes)
-
-## Spinning Shapes
-
-Project Began: May 31, 2017
-
-Project Last Updated: January 12, 2017
-
-[Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/SpinningShapes)
