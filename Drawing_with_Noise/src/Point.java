@@ -4,9 +4,9 @@ import processing.core.PApplet;
 import processing.core.PVector;
 
 public class Point {
-    PApplet p;
-    PVector position;
-    float diameter = 2;
+    private PApplet p;
+    private PVector position;
+    private float diameter = 2;
 
     public Point(PApplet p) {
         this.p = p;
