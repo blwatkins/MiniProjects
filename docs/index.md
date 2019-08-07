@@ -21,3 +21,12 @@ Project Last Updated: January 14, 2017
 <iframe width="560" height="315" src="https://www.youtube.com/embed/R_a83uiELcI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 [Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/This_Day_In_History)
+
+## Drawing with Noise
+
+Project Began: August 6, 2019
+
+Project Last Updated: August 6, 2019
+
+[Java Code](https://github.com/blwatkins/MiniProjects/tree/master/Drawing_with_Noise/src)
+ 
