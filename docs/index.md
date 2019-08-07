@@ -1,12 +1,14 @@
 # Projects
 
-## [Colorful Bubbles](ColorfulBubbles/index.html)
+## Colorful Bubbles
 
 Project Began: March 25, 2015
 
 Project Last Updated: December 31, 2017
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7uNn9-0Eb1E" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+
+[Online Interactive Version](ColorfulBubbles/index.html)
 
 [Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/Colorful_Bubbles)
 
@@ -29,4 +31,3 @@ Project Began: August 6, 2019
 Project Last Updated: August 6, 2019
 
 [Java Code](https://github.com/blwatkins/MiniProjects/tree/master/Drawing_with_Noise/src)
- 
