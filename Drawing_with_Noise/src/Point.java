@@ -6,20 +6,26 @@ import processing.core.PVector;
 public class Point {
     private PApplet p;
     private PVector position;
+    private int color;
 
     public Point(PApplet p) {
-        this.p = p;
-        position = new PVector();
+        init(p);
     }
 
     public Point(PApplet p, float x, float y) {
-        this.p = p;
-        position = new PVector(x, y);
+        init(p);
+        position.set(x, y);
     }
 
     public Point(PApplet p, PVector position) {
+        init(p);
+        this.position.set(position);
+    }
+
+    private void init(PApplet p) {
         this.p = p;
-        this.position = position.copy();
+        position = new PVector();
+        color = p.color(0, 0, 255, 255);
     }
 
     public PVector getPosition() {
@@ -27,7 +33,25 @@ public class Point {
     }
 
     public void display() {
-        p.point(position.x, position.y);
+        p.stroke(color);
+        p.fill(color);
+        p.ellipse(position.x, position.y, 5, 5);
+        fade();
+    }
+
+    private void fade() {
+        int red = (int)p.red(color);
+        int green = (int)p.green(color);
+        int blue = (int)p.blue(color);
+        int alpha = (int)p.alpha(color);
+        alpha--;
+        alpha = PApplet.constrain(alpha, 0, 255);
+        color = p.color(red, green, blue, alpha);
+    }
+
+    public boolean isFaded() {
+        int alpha = (int)p.alpha(color);
+        return alpha == 0;
     }
 
 
