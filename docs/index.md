@@ -28,6 +28,6 @@ Project Last Updated: January 14, 2017
 
 Project Began: August 6, 2019
 
-Project Last Updated: August 6, 2019
+Project Last Updated: August 7, 2019
 
 [Java Code](https://github.com/blwatkins/MiniProjects/tree/master/Drawing_with_Noise/src)
