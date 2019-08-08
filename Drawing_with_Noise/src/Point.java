@@ -22,8 +22,13 @@ public class Point {
         this.position = position.copy();
     }
 
+    public PVector getPosition() {
+        return position.copy();
+    }
+
     public void display() {
         p.point(position.x, position.y);
     }
+
 
 }
