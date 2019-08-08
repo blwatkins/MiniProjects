@@ -6,15 +6,16 @@ public class Line {
     private PApplet p;
     private PVector start;
     private PVector end;
+    private int color;
 
     public Line(PApplet p) {
         init(p);
     }
 
-    public Line(PApplet p, PVector start, PVector end) {
+    public Line(PApplet p, float startX, float startY, float endX, float endY) {
         init(p);
-        start.set(start);
-        end.set(end);
+        start.set(startX, startY);
+        end.set(endX, endY);
     }
 
     public Line(PApplet p, Point start, Point end) {
@@ -27,6 +28,28 @@ public class Line {
         this.p = p;
         start = new PVector();
         end = new PVector();
+        color = p.color(255, 0, 0, 255);
+    }
+
+    public void display() {
+        p.stroke(color);
+        p.line(start.x, start.y, end.x, end.y);
+        fade();
+    }
+
+    private void fade() {
+        int red = (int)p.red(color);
+        int green = (int)p.green(color);
+        int blue = (int)p.blue(color);
+        int alpha = (int)p.alpha(color);
+        alpha--;
+        alpha = PApplet.constrain(alpha, 0, 255);
+        color = p.color(red, green, blue, alpha);
+    }
+
+    public boolean isFaded() {
+        int alpha = (int)p.alpha(color);
+        return alpha == 0;
     }
 
 }
