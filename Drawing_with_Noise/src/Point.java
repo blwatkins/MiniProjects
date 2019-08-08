@@ -6,7 +6,6 @@ import processing.core.PVector;
 public class Point {
     private PApplet p;
     private PVector position;
-    private float diameter = 2;
 
     public Point(PApplet p) {
         this.p = p;
@@ -24,6 +23,7 @@ public class Point {
     }
 
     public void display() {
-        p.ellipse(position.x, position.y, diameter, diameter);
+        p.point(position.x, position.y);
     }
+
 }
