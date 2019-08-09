@@ -12,6 +12,7 @@ public class DrawingWithNoise extends PApplet{
     private ArrayList<Line> lines;
     private ArrayList<Point> points;
     private float meshSize;
+    private float n;
 
     public static void main(String[] passedArgs) {
         String[] appletArgs = new String[] { "DrawingWithNoise" };  // first string MUST match name of class
@@ -24,13 +25,14 @@ public class DrawingWithNoise extends PApplet{
     }
 
     public void settings() {
-        size(800, 800);
+        size(800, 800, P2D);
     }
 
     public void setup() {
         lines = new ArrayList<>();
         points = new ArrayList<>();
         meshSize = 50;
+        n = 0;
     }
 
     public void draw() {
@@ -50,6 +52,12 @@ public class DrawingWithNoise extends PApplet{
 
         removeFadedLines();
         removeFadedPoints();
+        meshSize = noise(n) * min(width, height) / 8;
+        n += 0.01;
+
+        if (n > 50000) {
+            n = 0;
+        }
     }
 
     private void removeFadedLines() {
