@@ -28,8 +28,9 @@ public class SliderValue {
         return diameter;
     }
 
-    public void updatePosition(float x) {
+    public void updatePosition(float x, float minX, float maxX) {
         float y = position.y;
+        x = PApplet.constrain(x, minX, maxX);
         position.set(x, y);
     }
 
