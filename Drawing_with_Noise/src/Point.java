@@ -32,6 +32,10 @@ public class Point {
         return position.copy();
     }
 
+    public int getAlpha() {
+        return (int)p.alpha(color);
+    }
+
     public void display() {
         p.stroke(color);
         p.fill(color);
