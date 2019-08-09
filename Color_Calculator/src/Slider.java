@@ -1,4 +1,3 @@
-// Color Calculator
 // Slider Class
 
 import processing.core.PApplet;
@@ -13,6 +12,7 @@ public class Slider {
     private float minValue;
     private float maxValue;
     private float currentValue;
+    private SliderValue sliderValue;
 
     public Slider(PApplet p) {
         init(p);
@@ -22,6 +22,7 @@ public class Slider {
         minValue = 0;
         maxValue = 0;
         currentValue = minValue;
+        sliderValue = new SliderValue(p);
     }
 
     public Slider(PApplet p, PVector position, float width, float height, float minValue, float maxValue) {
@@ -32,6 +33,8 @@ public class Slider {
         this.minValue = minValue;
         this.maxValue = maxValue;
         currentValue = minValue;
+        PVector sVPosition = new PVector(position.x, position.y + height / 2);
+        sliderValue = new SliderValue(p, sVPosition, height * 1.5f);
     }
 
     private void init(PApplet p) {
@@ -43,11 +46,16 @@ public class Slider {
         selectStyle();
         displayBar();
         displayEndpoints();
+        sliderValue.display();
     }
 
     private void selectStyle() {
         p.noStroke();
         p.fill(100);
+
+        if (active) {
+            p.fill(0, 0, 255);
+        }
     }
 
     private void displayBar() {
@@ -57,6 +65,14 @@ public class Slider {
     private void displayEndpoints() {
         p.ellipse(position.x, position.y + height/2, height ,height);
         p.ellipse(position.x + width, position.y + height/2, height ,height);
+    }
+
+    public void mousePressed(float mouseX, float mouseY) {
+
+        if (sliderValue.rollover(mouseX, mouseY)) {
+            active = !active;
+        }
+
     }
 
 }
