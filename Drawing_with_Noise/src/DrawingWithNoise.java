@@ -11,6 +11,7 @@ public class DrawingWithNoise extends PApplet{
 
     private ArrayList<Line> lines;
     private ArrayList<Point> points;
+    private float meshSize;
 
     public static void main(String[] passedArgs) {
         String[] appletArgs = new String[] { "DrawingWithNoise" };  // first string MUST match name of class
@@ -29,13 +30,13 @@ public class DrawingWithNoise extends PApplet{
     public void setup() {
         lines = new ArrayList<>();
         points = new ArrayList<>();
+        meshSize = 50;
     }
 
     public void draw() {
         background(200);
-        float diam = 50;
-        float x = random(mouseX - diam, mouseX + diam);
-        float y = random(mouseY - diam, mouseY + diam);
+        float x = random(mouseX - meshSize, mouseX + meshSize);
+        float y = random(mouseY - meshSize, mouseY + meshSize);
         points.add(new Point(this, x, y));
         addLines();
 
@@ -82,38 +83,39 @@ public class DrawingWithNoise extends PApplet{
     }
 
     private void addLines() {
-        //Get last point
         int lastIndex = points.size() - 1;
         Point lastPoint = points.get(lastIndex);
 
-        // For every other point that hasn't faded
         for (int i = 0; i < lastIndex; i++) {
             Point point = points.get(i);
 
             if (point.getAlpha() > 200) {
-                boolean intersectingPoint = false;
-                float diameter = lastPoint.distance(point);
-                Point center = createCenterPoint(lastPoint, point);
 
-                // make sure no other point intersects the circle
-                for (int k = 0; k < lastIndex; k++) {
-
-                    if (k != i) {
-                        Point compare = points.get(k);
-                        float distance = compare.distance(center);
-
-                        if (distance < diameter / 2) {
-                            intersectingPoint = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (!intersectingPoint) {
+                if (!isPointIntersectingCircle(lastPoint, point)) {
                     lines.add(new Line(this, lastPoint, point));
                 }
             }
         }
+    }
+
+    private boolean isPointIntersectingCircle(Point a, Point b) {
+        boolean isIntersectingPoint = false;
+        float diameter = a.distance(b);
+        Point center = createCenterPoint(a, b);
+
+        for (Point compare: points) {
+
+            if (compare != a && compare != b) {
+                float distance = compare.distance(center);
+
+                if (distance < diameter / 2) {
+                    isIntersectingPoint = true;
+                    break;
+                }
+            }
+        }
+
+        return  isIntersectingPoint;
     }
 
     private Point createCenterPoint(Point a, Point b) {
@@ -122,6 +124,5 @@ public class DrawingWithNoise extends PApplet{
         Point center = new Point(this, centerX, centerY);
         return center;
     }
-
 
 }
