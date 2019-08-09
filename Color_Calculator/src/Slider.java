@@ -36,4 +36,8 @@ public class Slider {
         active = false;
     }
 
+    public void display() {
+        p.rect(position.x, position.y, length, 10);
+    }
+
 }
