@@ -1,9 +1,9 @@
-// Slider Class
+// HorizontalSlider Class
 
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Slider {
+public class HorizontalSlider {
     private PApplet p;
     private boolean active;
     private PVector position;
@@ -14,7 +14,7 @@ public class Slider {
     private float currentValue;
     private SliderValue sliderValue;
 
-    public Slider(PApplet p) {
+    public HorizontalSlider(PApplet p) {
         init(p);
         position = new PVector();
         width = 100;
@@ -25,7 +25,7 @@ public class Slider {
         sliderValue = new SliderValue(p);
     }
 
-    public Slider(PApplet p, PVector position, float width, float height, float minValue, float maxValue) {
+    public HorizontalSlider(PApplet p, PVector position, float width, float height, float minValue, float maxValue) {
         init(p);
         this.position = position.copy();
         this.width = width;
@@ -47,15 +47,15 @@ public class Slider {
         displayBar();
         displayEndpoints();
         sliderValue.display();
+
+        if (active) {
+            moveSliderValue();
+        }
     }
 
     private void selectStyle() {
         p.noStroke();
         p.fill(100);
-
-        if (active) {
-            p.fill(0, 0, 255);
-        }
     }
 
     private void displayBar() {
@@ -72,6 +72,10 @@ public class Slider {
         if (sliderValue.rollover(mouseX, mouseY)) {
             active = !active;
         }
+
+    }
+
+    private void moveSliderValue() {
 
     }
 
