@@ -38,7 +38,6 @@ public class DrawingWithNoise extends PApplet{
         float y = random(mouseY - diam, mouseY + diam);
         points.add(new Point(this, x, y));
         addLines();
-        lines.add(new Line(this, pmouseX, pmouseY, mouseX, mouseY));
 
         for (Line line: lines) {
             line.display();
@@ -83,7 +82,45 @@ public class DrawingWithNoise extends PApplet{
     }
 
     private void addLines() {
+        //Get last point
+        int lastIndex = points.size() - 1;
+        Point lastPoint = points.get(lastIndex);
 
+        // For every other point that hasn't faded
+        for (int i = 0; i < lastIndex; i++) {
+            Point point = points.get(i);
+
+            if (point.getAlpha() > 200) {
+                boolean intersectingPoint = false;
+                float diameter = lastPoint.distance(point);
+                Point center = createCenterPoint(lastPoint, point);
+
+                // make sure no other point intersects the circle
+                for (int k = 0; k < lastIndex; k++) {
+
+                    if (k != i) {
+                        Point compare = points.get(k);
+                        float distance = compare.distance(center);
+
+                        if (distance < diameter / 2) {
+                            intersectingPoint = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!intersectingPoint) {
+                    lines.add(new Line(this, lastPoint, point));
+                }
+            }
+        }
+    }
+
+    private Point createCenterPoint(Point a, Point b) {
+        float centerX = (a.getPosition().x + b.getPosition().x) / 2;
+        float centerY = (a.getPosition().y + b.getPosition().y) / 2;
+        Point center = new Point(this, centerX, centerY);
+        return center;
     }
 
 
