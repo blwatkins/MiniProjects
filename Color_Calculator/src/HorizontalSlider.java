@@ -11,7 +11,6 @@ public class HorizontalSlider {
     private float height;
     private float minValue;
     private float maxValue;
-    private float currentValue;
     private SliderValue sliderValue;
 
     public HorizontalSlider(PApplet p) {
@@ -21,7 +20,6 @@ public class HorizontalSlider {
         height = 10;
         minValue = 0;
         maxValue = 0;
-        currentValue = minValue;
         sliderValue = new SliderValue(p);
     }
 
@@ -33,7 +31,6 @@ public class HorizontalSlider {
         this.height = PApplet.constrain(this.height, 1, width / 5);
         this.minValue = minValue;
         this.maxValue = maxValue;
-        currentValue = minValue;
         PVector sVPosition = new PVector(position.x, position.y + this.height / 2);
         sliderValue = new SliderValue(p, sVPosition, this.height * 1.5f);
     }
@@ -43,11 +40,18 @@ public class HorizontalSlider {
         active = false;
     }
 
+    public float getCurrentValue() {
+        float valueX = sliderValue.getPosition().x;
+        float value = PApplet.map(valueX, position.x, position.x + width, minValue, maxValue);
+        return value;
+    }
+
     public void display() {
         selectStyle();
         displayBar();
         displayEndpoints();
         sliderValue.display();
+        displayIntValue();
 
         if (active) {
             moveSliderValue();
@@ -78,6 +82,24 @@ public class HorizontalSlider {
 
     private void moveSliderValue() {
         sliderValue.updatePosition(p.mouseX, position.x, position.x + width);
+    }
+
+    public void displayFloatValue() {
+        float value = getCurrentValue();
+        p.textAlign(p.LEFT, p.CENTER);
+        p.textSize((int)height * 2);
+        p.text(value, position.x + width + (height * 1.5f / 2), position.y);
+    }
+
+    public void displayIntValue() {
+        int value = (int)getCurrentValue();
+        displayValue(Integer.toString(value));
+    }
+
+    private void displayValue(String value) {
+        p.textAlign(p.LEFT, p.CENTER);
+        p.textSize((int)height * 2);
+        p.text(value, position.x + width + (height * 1.5f / 2), position.y);
     }
 
 }
