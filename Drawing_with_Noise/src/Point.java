@@ -47,7 +47,7 @@ public class Point {
     public void display() {
         p.stroke(color);
         p.fill(color);
-        p.ellipse(position.x, position.y, 5, 5);
+        p.ellipse(position.x, position.y, 3, 3);
         fade();
     }
 
