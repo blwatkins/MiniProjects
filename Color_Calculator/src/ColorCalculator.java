@@ -23,8 +23,8 @@ public class ColorCalculator extends PApplet {
 
     public void setup() {
         float sliderLength = 400;
-        PVector sliderPos = new PVector(width / 2 - sliderLength / 2, height / 2);
-        slider = new HorizontalSlider(this, sliderPos, sliderLength, 10, 0, 60);
+        PVector sliderPos = new PVector(width / 2f - sliderLength / 2, height / 2);
+        slider = new HorizontalSlider(this, sliderPos, sliderLength, 10, 0, 255);
     }
 
     public void draw(){
