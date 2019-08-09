@@ -28,6 +28,7 @@ public class ColorCalculator extends PApplet {
     }
 
     public void draw(){
+        background(255);
         slider.display();
     }
 
