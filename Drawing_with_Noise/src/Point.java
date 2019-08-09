@@ -36,6 +36,14 @@ public class Point {
         return (int)p.alpha(color);
     }
 
+    public float distance(Point point) {
+        float x1 = position.x;
+        float y1 = position.y;
+        float x2 = point.getPosition().x;
+        float y2 = point.getPosition().y;
+        return PApplet.dist(x1, y1, x2, y2);
+    }
+
     public void display() {
         p.stroke(color);
         p.fill(color);
