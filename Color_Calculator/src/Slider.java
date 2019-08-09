@@ -8,7 +8,8 @@ public class Slider {
     private PApplet p;
     private boolean active;
     private PVector position;
-    private float length;
+    private float width;
+    private float height;
     private float minValue;
     private float maxValue;
     private float currentValue;
@@ -16,16 +17,18 @@ public class Slider {
     public Slider(PApplet p) {
         init(p);
         position = new PVector();
-        length = 100;
+        width = 100;
+        height = 10;
         minValue = 0;
         maxValue = 0;
         currentValue = minValue;
     }
 
-    public Slider(PApplet p, PVector position, float length, float minValue, float maxValue) {
+    public Slider(PApplet p, PVector position, float width, float height, float minValue, float maxValue) {
         init(p);
         this.position = position.copy();
-        this.length = length;
+        this.width = width;
+        this.height = height;
         this.minValue = minValue;
         this.maxValue = maxValue;
         currentValue = minValue;
@@ -37,7 +40,23 @@ public class Slider {
     }
 
     public void display() {
-        p.rect(position.x, position.y, length, 10);
+        selectStyle();
+        displayBar();
+        displayEndpoints();
+    }
+
+    private void selectStyle() {
+        p.noStroke();
+        p.fill(100);
+    }
+
+    private void displayBar() {
+        p.rect(position.x, position.y, width, height);
+    }
+
+    private void displayEndpoints() {
+        p.ellipse(position.x, position.y + height/2, height ,height);
+        p.ellipse(position.x + width, position.y + height/2, height ,height);
     }
 
 }
