@@ -30,12 +30,12 @@ public class HorizontalSlider {
         this.position = position.copy();
         this.width = width;
         this.height = height;
-        PApplet.constrain(height, 1, width / 5);
+        this.height = PApplet.constrain(this.height, 1, width / 5);
         this.minValue = minValue;
         this.maxValue = maxValue;
         currentValue = minValue;
-        PVector sVPosition = new PVector(position.x, position.y + height / 2);
-        sliderValue = new SliderValue(p, sVPosition, height * 1.5f);
+        PVector sVPosition = new PVector(position.x, position.y + this.height / 2);
+        sliderValue = new SliderValue(p, sVPosition, this.height * 1.5f);
     }
 
     private void init(PApplet p) {
@@ -77,7 +77,7 @@ public class HorizontalSlider {
     }
 
     private void moveSliderValue() {
-
+        sliderValue.updatePosition(p.mouseX, position.x, position.x + width);
     }
 
 }
