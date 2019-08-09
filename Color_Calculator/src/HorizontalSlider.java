@@ -30,7 +30,7 @@ public class HorizontalSlider {
         this.position = position.copy();
         this.width = width;
         this.height = height;
-        PApplet.constrain(height, 1, width / 2);
+        PApplet.constrain(height, 1, width / 5);
         this.minValue = minValue;
         this.maxValue = maxValue;
         currentValue = minValue;
