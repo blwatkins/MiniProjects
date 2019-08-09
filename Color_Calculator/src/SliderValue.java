@@ -28,6 +28,11 @@ public class SliderValue {
         return diameter;
     }
 
+    public void updatePosition(float x) {
+        float y = position.y;
+        position.set(x, y);
+    }
+
     public void display() {
         p.noStroke();
         p.fill(0);
