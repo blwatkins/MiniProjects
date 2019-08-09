@@ -31,4 +31,8 @@ public class ColorCalculator extends PApplet {
         slider.display();
     }
 
+    public void mousePressed() {
+        slider.mousePressed(mouseX, mouseY);
+    }
+
 }
