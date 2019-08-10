@@ -2,6 +2,8 @@
 
 import processing.core.PApplet;
 
+import java.util.Random;
+
 public class Color {
     private PApplet p;
     private ColorType colorType;
@@ -26,6 +28,15 @@ public class Color {
     public Color(PApplet p) {
         this.p = p;
         setRandomColorType();
+    }
+
+    public boolean isHSB() {
+        boolean rainbow = colorType == ColorType.RAINBOW;
+        boolean soft = colorType == ColorType.SOFT;
+        boolean warm = colorType == ColorType.WARM;
+        boolean top = colorType == ColorType.TOPCOL;
+        boolean bottom = colorType == ColorType.BOTTOMCOL;
+        return rainbow || soft || warm || top || bottom;
     }
 
     public void setColorType(ColorType colorType) {
