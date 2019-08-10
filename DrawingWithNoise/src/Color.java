@@ -77,4 +77,32 @@ public class Color {
         }
     }
 
+    public int mapColor(float value, float minValue, float maxValue, int saturation, int brightness) {
+        int hue = 0;
+        p.colorMode(p.HSB, 360);
+
+        switch (colorType) {
+            case RAINBOW:
+                hue = (int)PApplet.map(value, minValue, maxValue, 0, 360);
+                break;
+            case SOFT:
+                hue = (int)PApplet.map(value, minValue, maxValue, 90, 285);
+                break;
+            case WARM:
+                hue = (int)PApplet.map(value, minValue, maxValue, 0, 70);
+                break;
+            case TOPCOL:
+                hue = (int)PApplet.map(value, minValue, maxValue, 180, 360);
+                break;
+            case BOTTOMCOL:
+                hue = (int)PApplet.map(value, minValue, maxValue, 0, 180);
+                break;
+            default:
+                hue = 0;
+                break;
+        }
+
+        return p.color(hue, saturation, brightness);
+    }
+
 }
