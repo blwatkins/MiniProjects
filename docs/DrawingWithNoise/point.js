@@ -33,7 +33,7 @@ function Point(x, y) {
 
     this.fade = function() {
         let alphaValue = alpha(this.col);
-        alphaValue--;
+        alphaValue += deltaAlpha;
         alphaValue = constrain(alphaValue, 0, 255);
         this.col.setAlpha(alphaValue);
     };

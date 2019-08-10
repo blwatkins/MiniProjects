@@ -4,6 +4,7 @@ var points;
 var lines;
 var meshSize;
 var n;
+var deltaAlpha;
 
 function setup() {
     createCanvas(windowWidth-20, windowHeight-20, P2D);
@@ -11,6 +12,7 @@ function setup() {
     lines = new Array();
     meshSize = 50;
     n = 0;
+    deltaAlpha = -3;
 }
 
 function draw() {
