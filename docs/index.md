@@ -10,6 +10,8 @@ Project Last Updated: December 31, 2017
 
 [Online Interactive Version](ColorfulBubbles/index.html)
 
+[Interactive Instructions](https://blwatkins.github.io/MiniProjects/ColorfulBubbles/index.html#instructions)
+
 [Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/Colorful_Bubbles)
 
 [p5.js Code](https://github.com/blwatkins/MiniProjects/tree/master/docs/ColorfulBubbles)
