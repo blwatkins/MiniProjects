@@ -28,6 +28,10 @@ public class Color {
         setRandomColorType();
     }
 
+    public void setColorType(ColorType colorType) {
+        this.colorType = colorType;
+    }
+
     public void setRandomColorType() {
         int rand = (int)p.random(1400);
 
