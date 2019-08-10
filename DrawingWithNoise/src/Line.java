@@ -24,6 +24,10 @@ public class Line {
        this.end.set(end.getPosition());
     }
 
+    public void setColor(int color) {
+        this.color = color;
+    }
+
     private void init(PApplet p) {
         this.p = p;
         start = new PVector();
