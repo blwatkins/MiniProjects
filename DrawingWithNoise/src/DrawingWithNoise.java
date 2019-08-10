@@ -13,6 +13,7 @@ public class DrawingWithNoise extends PApplet{
     private ArrayList<Point> points;
     private float meshSize;
     private float n;
+    Color color;
 
     public static void main(String[] passedArgs) {
         String[] appletArgs = new String[] { "DrawingWithNoise" };  // first string MUST match name of class
@@ -33,6 +34,8 @@ public class DrawingWithNoise extends PApplet{
         points = new ArrayList<>();
         meshSize = 50;
         n = 0;
+        color = new Color(this);
+        color.setColorType(Color.ColorType.GREEN);
     }
 
     public void draw() {
@@ -100,7 +103,10 @@ public class DrawingWithNoise extends PApplet{
             if (point.getAlpha() > 200) {
 
                 if (!isPointIntersectingCircle(lastPoint, point)) {
-                    lines.add(new Line(this, lastPoint, point));
+                    Line line = new Line(this, lastPoint, point);
+                    int c = color.randomColor();
+                    line.setColor(c);
+                    lines.add(line);
                 }
             }
         }
