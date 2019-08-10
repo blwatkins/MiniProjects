@@ -3,7 +3,8 @@
 import processing.core.PApplet;
 
 public class Color {
-    PApplet p;
+    private PApplet p;
+    private ColorType colorType;
 
     public enum ColorType {
         RAINBOW,
@@ -24,58 +25,56 @@ public class Color {
 
     public Color(PApplet p) {
         this.p = p;
+        setRandomColorType();
     }
 
-    public ColorType getRandomColorType() {
+    public void setRandomColorType() {
         int rand = (int)p.random(1400);
-        ColorType choice;
 
         switch (rand % 14) {
             case 1:
-                choice = ColorType.SOFT;
+                colorType = ColorType.SOFT;
                 break;
             case 2:
-                choice = ColorType.WARM;
+                colorType = ColorType.WARM;
                 break;
             case 3:
-                choice = ColorType.TOPCOL;
+                colorType = ColorType.TOPCOL;
                 break;
             case 4:
-                choice = ColorType.BOTTOMCOL;
+                colorType = ColorType.BOTTOMCOL;
                 break;
             case 5:
-                choice = ColorType.RANDOM;
+                colorType = ColorType.RANDOM;
                 break;
             case 6:
-                choice = ColorType.RED;
+                colorType = ColorType.RED;
                 break;
             case 7:
-                choice = ColorType.YELLOW;
+                colorType = ColorType.YELLOW;
                 break;
             case 8:
-                choice = ColorType.GREEN;
+                colorType = ColorType.GREEN;
                 break;
             case 9:
-                choice = ColorType.CYAN;
+                colorType = ColorType.CYAN;
                 break;
             case 10:
-                choice = ColorType.BLUE;
+                colorType = ColorType.BLUE;
                 break;
             case 11:
-                choice = ColorType.MAGENTA;
+                colorType = ColorType.MAGENTA;
                 break;
             case 12:
-                choice = ColorType.WHITE;
+                colorType = ColorType.WHITE;
                 break;
             case 13:
-                choice = ColorType.BLACK;
+                colorType = ColorType.BLACK;
                 break;
             default:
-                choice = ColorType.RAINBOW;
+                colorType = ColorType.RAINBOW;
                 break;
         }
-
-        return choice;
     }
 
 }
