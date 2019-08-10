@@ -38,4 +38,6 @@ Project Began: August 9, 2019
 
 Project Last Updated: August 9, 2019
 
+[Online Interactive Version](DrawingWithNoise/index.html)
+
 [Java Code](https://github.com/blwatkins/MiniProjects/tree/master/Color_Calculator/src)
