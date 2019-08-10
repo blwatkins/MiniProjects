@@ -45,8 +45,12 @@ function keyTyped() {
 }
 
 function createInstructions() {
+    var div = createElement("div", "");
+    div.id("instructions");
     var h1 = createElement("h1", "Instructions");
     var instructionList = createElement("ul", "");
     var instruction = createElement("li", "Press the 'a' key to activate or deactivate trails");
     instruction.parent(instructionList);  
+    h1.parent(div);
+    instructionList.parent(div);
 }
