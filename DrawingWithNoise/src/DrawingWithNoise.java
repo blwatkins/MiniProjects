@@ -33,7 +33,7 @@ public class DrawingWithNoise extends PApplet{
     }
 
     public void settings() {
-        size(800, 800, P2D);
+        fullScreen(P2D);
     }
 
     public void setup() {
