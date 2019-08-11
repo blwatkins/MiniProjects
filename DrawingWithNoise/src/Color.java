@@ -104,7 +104,7 @@ public class Color {
     }
 
     public int mapColor(float value, float minValue, float maxValue, int saturation, int brightness) {
-        int hue = 0;
+        int hue;
         p.colorMode(p.HSB, 360);
 
         switch (colorType) {
