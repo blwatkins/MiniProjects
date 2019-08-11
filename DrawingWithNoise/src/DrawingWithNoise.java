@@ -119,7 +119,7 @@ public class DrawingWithNoise extends PApplet{
 
         for (Point compare: points) {
 
-            if (compare != a && compare != b) {
+            if (compare != a && compare != b && compare.getAlpha() > 200) {
                 float distance = compare.distance(center);
 
                 if (distance < diameter / 2) {
