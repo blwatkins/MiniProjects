@@ -36,6 +36,14 @@ public class Point {
         return (int)p.alpha(color);
     }
 
+    public void setColor(int color) {
+        int r = (int)p.red(color);
+        int g = (int)p.green(color);
+        int b = (int)p.blue(color);
+        int a = (int)p.alpha(this.color);
+        this.color = p.color(r, g, b, a);
+    }
+
     public float distance(Point point) {
         float x1 = position.x;
         float y1 = position.y;
