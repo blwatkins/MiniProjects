@@ -21,7 +21,7 @@ public class Color {
         MAGENTA,
         WHITE,
         BLACK
-    };
+    }
 
     public Color(PApplet p) {
         this.p = p;
