@@ -25,6 +25,7 @@ public class Line {
     }
 
     public void setColor(int color) {
+        p.colorMode(p.RGB, 255);
         int r = (int)p.red(color);
         int g = (int)p.green(color);
         int b = (int)p.blue(color);
@@ -36,16 +37,18 @@ public class Line {
         this.p = p;
         start = new PVector();
         end = new PVector();
-        color = p.color(255, 0, 0, 255);
+        color = p.color(200, 255);
     }
 
     public void display() {
+        p.colorMode(p.RGB, 255);
         p.stroke(color);
         p.line(start.x, start.y, end.x, end.y);
         fade();
     }
 
     private void fade() {
+        p.colorMode(p.RGB, 255);
         int red = (int)p.red(color);
         int green = (int)p.green(color);
         int blue = (int)p.blue(color);
@@ -56,6 +59,7 @@ public class Line {
     }
 
     public boolean isFaded() {
+        p.colorMode(p.RGB, 255);
         int alpha = (int)p.alpha(color);
         return alpha == 0;
     }

@@ -25,7 +25,7 @@ public class Point {
     private void init(PApplet p) {
         this.p = p;
         position = new PVector();
-        color = p.color(0, 0, 255, 255);
+        color = p.color(200, 255);
     }
 
     public int getAlpha() {
@@ -37,6 +37,7 @@ public class Point {
     }
 
     public void setColor(int color) {
+        p.colorMode(p.RGB, 255);
         int r = (int)p.red(color);
         int g = (int)p.green(color);
         int b = (int)p.blue(color);
@@ -53,6 +54,7 @@ public class Point {
     }
 
     public void display() {
+        p.colorMode(p.RGB, 255);
         p.stroke(color);
         p.fill(color);
         p.ellipse(position.x, position.y, 3, 3);
@@ -60,6 +62,7 @@ public class Point {
     }
 
     private void fade() {
+        p.colorMode(p.RGB, 255);
         int red = (int)p.red(color);
         int green = (int)p.green(color);
         int blue = (int)p.blue(color);
@@ -70,6 +73,7 @@ public class Point {
     }
 
     public boolean isFaded() {
+        p.colorMode(p.RGB, 255);
         int alpha = (int)p.alpha(color);
         return alpha == 0;
     }
