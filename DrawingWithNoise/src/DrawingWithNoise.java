@@ -15,6 +15,8 @@ public class DrawingWithNoise extends PApplet{
     private float n;
     private Color color;
     private boolean glow;
+    private float timer;
+    private float timerMax;
 
     public static void main(String[] passedArgs) {
         String[] appletArgs = new String[] { "DrawingWithNoise" };  // first string MUST match name of class
@@ -36,8 +38,10 @@ public class DrawingWithNoise extends PApplet{
         meshSize = 50;
         n = 0;
         color = new Color(this);
-        color.setColorType(Color.ColorType.GREEN);
+        color.setColorType(Color.ColorType.RAINBOW);
         glow = false;
+        timer = 0;
+        timerMax = 500;
     }
 
     public void draw() {
@@ -51,7 +55,10 @@ public class DrawingWithNoise extends PApplet{
 
         float x = random(mouseX - meshSize, mouseX + meshSize);
         float y = random(mouseY - meshSize, mouseY + meshSize);
-        points.add(new Point(this, x, y));
+        Point p = new Point(this, x, y);
+        int col = getColor();
+        p.setColor(col);
+        points.add(p);
         addLines();
 
         for (Line line: lines) {
@@ -65,11 +72,8 @@ public class DrawingWithNoise extends PApplet{
         removeFadedLines();
         removeFadedPoints();
         meshSize = noise(n) * min(width, height) / 8;
-        n += 0.01;
-
-        if (n > 50000) {
-            n = 0;
-        }
+        n = (n + 0.01f) % 50000f;
+        timer = (timer + 0.1f) % timerMax;
     }
 
     private void removeFadedLines() {
@@ -113,7 +117,7 @@ public class DrawingWithNoise extends PApplet{
 
                 if (!isPointIntersectingCircle(lastPoint, point)) {
                     Line line = new Line(this, lastPoint, point);
-                    int c = color.randomColor();
+                    int c = getColor();
                     line.setColor(c);
                     lines.add(line);
                 }
@@ -152,5 +156,19 @@ public class DrawingWithNoise extends PApplet{
         if (key == 'g') {
             glow = !glow;
         }
+    }
+
+    public int getColor() {
+        int col = color(255);
+
+        if (color.isRGB()) {
+            colorMode(RGB, 255);
+            col = color.randomColor();
+        } else if (color.isHSB()) {
+            colorMode(HSB, 360);
+            col = color.mapColor(timer, 0, timerMax, 360, 360);
+        }
+
+        return col;
     }
 }
