@@ -245,4 +245,13 @@ public class Color {
         return p.color(r, g, b);
     }
 
+    public int getComplementaryColor(int color) {
+        p.colorMode(p.HSB, 360);
+        int h = (int)p.hue(color);
+        int s = (int)p.saturation(color);
+        int b = (int)p.brightness(color);
+        h = (h + 180) % 360;
+        return p.color(h, s, b);
+    }
+
 }
