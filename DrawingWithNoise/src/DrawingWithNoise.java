@@ -13,7 +13,8 @@ public class DrawingWithNoise extends PApplet{
     private ArrayList<Point> points;
     private float meshSize;
     private float n;
-    Color color;
+    private Color color;
+    private boolean glow;
 
     public static void main(String[] passedArgs) {
         String[] appletArgs = new String[] { "DrawingWithNoise" };  // first string MUST match name of class
@@ -36,10 +37,18 @@ public class DrawingWithNoise extends PApplet{
         n = 0;
         color = new Color(this);
         color.setColorType(Color.ColorType.GREEN);
+        glow = false;
     }
 
     public void draw() {
-        background(200);
+        background(0);
+
+        if (glow) {
+            blendMode(ADD);
+        } else {
+            blendMode(BLEND);
+        }
+
         float x = random(mouseX - meshSize, mouseX + meshSize);
         float y = random(mouseY - meshSize, mouseY + meshSize);
         points.add(new Point(this, x, y));
@@ -139,4 +148,9 @@ public class DrawingWithNoise extends PApplet{
         return center;
     }
 
+    public void keyPressed() {
+        if (key == 'g') {
+            glow = !glow;
+        }
+    }
 }
