@@ -1,7 +1,9 @@
 // Main Class
 // Drawing With Noise
 // Started: 6 August 2019
-
+// Press 'a' to change background color
+// Press 's' to randomly change color type
+// Press 'd' to turn glow effect on and off
 
 import java.util.ArrayList;
 import processing.core.PApplet;
@@ -17,6 +19,7 @@ public class DrawingWithNoise extends PApplet{
     private boolean glow;
     private float timer;
     private float timerMax;
+    private boolean blackBG;
 
     public static void main(String[] passedArgs) {
         String[] appletArgs = new String[] { "DrawingWithNoise" };  // first string MUST match name of class
@@ -26,6 +29,7 @@ public class DrawingWithNoise extends PApplet{
         } else {
             PApplet.main(appletArgs);
         }
+
     }
 
     public void settings() {
@@ -38,14 +42,19 @@ public class DrawingWithNoise extends PApplet{
         meshSize = 50;
         n = 0;
         color = new Color(this);
-        color.setColorType(Color.ColorType.RAINBOW);
         glow = false;
         timer = 0;
         timerMax = 500;
+        blackBG = true;
     }
 
     public void draw() {
-        background(0);
+
+        if (blackBG) {
+            background(0);
+        } else {
+            background(255);
+        }
 
         if (glow) {
             blendMode(ADD);
@@ -153,8 +162,22 @@ public class DrawingWithNoise extends PApplet{
     }
 
     public void keyPressed() {
-        if (key == 'g') {
-            glow = !glow;
+
+        if (key == 'a') {
+            blackBG = !blackBG;
+
+            if (!blackBG) {
+                glow = false;
+            }
+
+        } else if (key == 's') {
+            color.setRandomColorType();
+
+        } else if (key == 'd') {
+
+            if (blackBG) {
+                glow = !glow;
+            }
         }
     }
 
