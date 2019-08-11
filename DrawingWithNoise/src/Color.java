@@ -2,8 +2,6 @@
 
 import processing.core.PApplet;
 
-import java.util.Random;
-
 public class Color {
     private PApplet p;
     private ColorType colorType;
@@ -37,6 +35,19 @@ public class Color {
         boolean top = colorType == ColorType.TOPCOL;
         boolean bottom = colorType == ColorType.BOTTOMCOL;
         return rainbow || soft || warm || top || bottom;
+    }
+
+    public boolean isRGB() {
+        boolean random = colorType == ColorType.RANDOM;
+        boolean red = colorType == ColorType.RED;
+        boolean yellow = colorType == ColorType.YELLOW;
+        boolean green = colorType == ColorType.GREEN;
+        boolean cyan = colorType == ColorType.CYAN;
+        boolean blue = colorType == ColorType.BLUE;
+        boolean magenta = colorType == ColorType.MAGENTA;
+        boolean white = colorType == ColorType.WHITE;
+        boolean black = colorType == ColorType.BLACK;
+        return random || red || yellow || green || cyan || blue || magenta || white || black;
     }
 
     public void setColorType(ColorType colorType) {
