@@ -25,7 +25,11 @@ public class Line {
     }
 
     public void setColor(int color) {
-        this.color = color;
+        int r = (int)p.red(color);
+        int g = (int)p.green(color);
+        int b = (int)p.blue(color);
+        int a = (int)p.alpha(this.color);
+        this.color = p.color(r, g, b, a);
     }
 
     private void init(PApplet p) {
