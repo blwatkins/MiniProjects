@@ -28,12 +28,12 @@ public class Point {
         color = p.color(0, 0, 255, 255);
     }
 
-    public PVector getPosition() {
-        return position.copy();
-    }
-
     public int getAlpha() {
         return (int)p.alpha(color);
+    }
+
+    public PVector getPosition() {
+        return position.copy();
     }
 
     public void setColor(int color) {
@@ -73,6 +73,5 @@ public class Point {
         int alpha = (int)p.alpha(color);
         return alpha == 0;
     }
-
 
 }
