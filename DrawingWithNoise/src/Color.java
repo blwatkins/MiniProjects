@@ -188,4 +188,61 @@ public class Color {
         return p.color(r, g, b);
     }
 
+    public int singleColor() {
+        int r;
+        int g;
+        int b;
+        p.colorMode(p.RGB, 255);
+
+        switch (colorType) {
+            case RED:
+                r = 255;
+                g = 0;
+                b = 0;
+                break;
+            case YELLOW:
+                r = 255;
+                g = 255;
+                b = 0;
+                break;
+            case GREEN:
+                r = 0;
+                g = 255;
+                b = 0;
+                break;
+            case CYAN:
+                r = 0;
+                g = 255;
+                b = 255;
+                break;
+            case BLUE:
+                r = 0;
+                g = 0;
+                b = 255;
+                break;
+            case MAGENTA:
+                r = 255;
+                g = 0;
+                b = 255;
+                break;
+            case WHITE:
+                r = 255;
+                g = 255;
+                b = 255;
+                break;
+            case BLACK:
+                r = 0;
+                g = 0;
+                b = 0;
+                break;
+            default:
+                r = (int)p.random(255);
+                g = (int)p.random(255);
+                b = (int)p.random(255);
+                break;
+        }
+
+        return p.color(r, g, b);
+    }
+
 }
