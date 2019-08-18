@@ -32,7 +32,7 @@ public class ColorCalculator extends PApplet {
     }
 
     public void draw(){
-        setHSBBackgroundColor();
+        displayHSBBackground();
         for (int i = 0; i < hsbSliders.length; i++) {
             hsbSliders[i].display();
         }
@@ -54,7 +54,7 @@ public class ColorCalculator extends PApplet {
         }
     }
 
-    private void setHSBBackgroundColor() {
+    private void displayHSBBackground() {
         int h = (int)hsbSliders[0].getCurrentValue();
         int s = (int)hsbSliders[1].getCurrentValue();
         int b = (int)hsbSliders[2].getCurrentValue();
