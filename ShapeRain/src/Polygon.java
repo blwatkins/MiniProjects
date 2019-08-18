@@ -12,7 +12,7 @@ public class Polygon {
         this.p = p;
         this.position = position.copy();
         this.radius = radius;
-        color = new Color(p, p.color(0));
+        color = new Color(p, p.color(0, 0, 255));
         init(sides);
     }
 
@@ -35,6 +35,8 @@ public class Polygon {
     }
 
     public void display() {
+        p.noStroke();
+        p.fill(color.getColor());
         p.pushMatrix();
         p.translate(position.x, position.y);
         p.beginShape();
@@ -44,6 +46,7 @@ public class Polygon {
         }
 
         p.endShape(p.CLOSE);
+        p.popMatrix();
     }
 
 }
