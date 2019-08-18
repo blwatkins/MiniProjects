@@ -12,7 +12,7 @@ public class Circle extends Polygon {
         p.fill(color.getColor());
         p.pushMatrix();
         p.translate(position.x, position.y);
-        p.ellipse(0, 0, radius, radius);
+        p.ellipse(0, 0, radius * 2, radius * 2);
         p.popMatrix();
     }
 
