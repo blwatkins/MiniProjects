@@ -1,11 +1,12 @@
 // Shape Rain
 // Main Class
 
+import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PVector;
 
 public class ShapeRain extends PApplet {
-    Polygon shape;
+    ArrayList<Polygon> shapes;
 
     public static void main(String[] passedArgs) {
         String[] appletArgs = new String[] { "ShapeRain" };  // first string MUST match name of class
@@ -22,12 +23,28 @@ public class ShapeRain extends PApplet {
     }
 
     public void setup() {
-        shape = new Polygon(this, new PVector(width/2, height / 2), 10, 200);
+        shapes = new ArrayList<>();
     }
 
     public void draw(){
         background(255);
-        shape.display();
+
+        float x = random(width);
+        float y = random(height);
+
+        Polygon p = new Polygon(this, new PVector(x, y), 3, 10);
+        shapes.add(p);
+
+        for (Polygon shape: shapes) {
+            shape.display();
+            shape.fade();
+        }
+
+        for (int i = shapes.size() - 1; i >= 0; i--) {
+            if (shapes.get(i).isFaded()) {
+                shapes.remove(shapes.get(i));
+            }
+        }
     }
 
 }
