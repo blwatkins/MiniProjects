@@ -24,7 +24,7 @@ public class ShapeRain extends PApplet {
     }
 
     public void draw(){
-
+        background(255);
     }
 
 }
