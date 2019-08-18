@@ -42,4 +42,16 @@ public class Polygon {
         }
     }
 
+    public void display() {
+        p.pushMatrix();
+        p.translate(position.x, position.y);
+        p.beginShape();
+
+        for (int i = 0; i < vertices.length; i++) {
+            p.vertex(vertices[i].x, vertices[i].y);
+        }
+
+        p.endShape(p.CLOSE);
+    }
+
 }
