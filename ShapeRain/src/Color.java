@@ -7,6 +7,11 @@ public class Color {
     private int b;
     private int a;
 
+    public Color(PApplet p) {
+        this.p = p;
+        initColor(p.color(0));
+    }
+
     public Color(PApplet p, int color) {
         this.p = p;
         initColor(color);
