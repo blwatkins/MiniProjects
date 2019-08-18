@@ -25,7 +25,7 @@ public class Polygon {
         color[0] = 0;
         color[1] = 0;
         color[2] = 0;
-        color[4] = 255;
+        color[3] = 255;
     }
 
     private void initVertices(int sides) {
