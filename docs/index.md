@@ -1,5 +1,9 @@
 # Projects
 
+## Color Calculator
+
+[Java Code](https://github.com/blwatkins/MiniProjects/tree/master/ColorCalculator/src)
+
 ## Colorful Bubbles
 
 A collection of bubbles that randomly move according to the mouse position.
@@ -11,14 +15,6 @@ A collection of bubbles that randomly move according to the mouse position.
 [Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/ColorfulBubbles)
 
 [p5.js Code](https://github.com/blwatkins/MiniProjects/tree/master/docs/ColorfulBubbles)
-
-## This Day in History
-
-A visualization of data from [Today in History](http://history.muffinlabs.com/) with images from Wikipedia.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/R_a83uiELcI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-[Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/ThisDayInHistory)
 
 ## Drawing with Noise
 
@@ -32,6 +28,15 @@ A dynamic pseudo-mesh drawn according to the mouse's location on the screen.  Th
 
 [p5.js Code](https://github.com/blwatkins/MiniProjects/tree/master/docs/DrawingWithNoise)
 
-## Color Calculator
 
-[Java Code](https://github.com/blwatkins/MiniProjects/tree/master/ColorCalculator/src)
+## This Day in History
+
+A visualization of data from [Today in History](http://history.muffinlabs.com/) with images from Wikipedia.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/R_a83uiELcI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+[Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/ThisDayInHistory)
+
+## Shape Rain
+
+[Java Code]()
