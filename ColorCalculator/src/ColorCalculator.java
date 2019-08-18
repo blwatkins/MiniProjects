@@ -4,6 +4,8 @@
 import processing.core.PApplet;
 import processing.core.PVector;
 
+import java.awt.image.RGBImageFilter;
+
 public class ColorCalculator extends PApplet {
     private HorizontalSlider[] hsbSliders;
     private HorizontalSlider[] rgbSliders;
@@ -34,6 +36,7 @@ public class ColorCalculator extends PApplet {
 
     public void draw(){
         displayHSBBackground();
+        displayRGBBackground();
         for (int i = 0; i < hsbSliders.length; i++) {
             hsbSliders[i].display();
         }
@@ -42,6 +45,11 @@ public class ColorCalculator extends PApplet {
             rgbSliders[i].display();
         }
 
+        if (isActive_HSB()) {
+            setRGBSliders();
+        } else if (isActive_RGB()) {
+            setHSBSliders();
+        }
     }
 
     public void mousePressed() {
@@ -88,11 +96,91 @@ public class ColorCalculator extends PApplet {
         if (b > 180) {
             fill(0);
         } else {
+            fill(360);
+        }
+
+        textAlign(CENTER, CENTER);
+        text("H = " + h + "; S = " + s  + "; B = " + b, width / 4, 15 * height / 20);
+    }
+
+    private void displayRGBBackground() {
+        int r = (int)rgbSliders[0].getCurrentValue();
+        int g = (int)rgbSliders[1].getCurrentValue();
+        int b = (int)rgbSliders[2].getCurrentValue();
+        int brightness = (int)hsbSliders[2].getCurrentValue();
+
+        colorMode(RGB, 255);
+        fill(color(r,g,b));
+        noStroke();
+        rect(width / 2, 14 * height / 20, width, height);
+        textSize(20);
+
+        if (brightness > 180) {
+            fill(0);
+        } else {
             fill(255);
         }
 
-        textAlign(CENTER, TOP);
-        text("H = " + h + "; S = " + s  + "; B = " + b, width / 4, 14 * height / 20);
+        textAlign(CENTER, CENTER);
+        text("R = " + r + "; G = " + g  + "; B = " + b, 3 * width / 4, 15 * height / 20);
+    }
+
+    private boolean isActive_HSB() {
+        boolean isActive = false;
+
+        for (HorizontalSlider slider: hsbSliders) {
+
+            if (slider.isActive()) {
+                isActive = true;
+                break;
+            }
+        }
+
+        return isActive;
+    }
+
+    private boolean isActive_RGB() {
+        boolean isActive = false;
+
+        for (HorizontalSlider slider: rgbSliders) {
+
+            if (slider.isActive()) {
+                isActive = true;
+                break;
+            }
+        }
+
+        return isActive;
+    }
+
+    private void setRGBSliders() {
+        colorMode(HSB, 360);
+        int h = (int)hsbSliders[0].getCurrentValue();
+        int s = (int)hsbSliders[1].getCurrentValue();
+        int b = (int)hsbSliders[2].getCurrentValue();
+        int color = color(h, s, b);
+        colorMode(RGB, 255);
+        int red = (int)red(color);
+        int green = (int)green(color);
+        int blue = (int)blue(color);
+        rgbSliders[0].setCurrentValue(red);
+        rgbSliders[1].setCurrentValue(green);
+        rgbSliders[2].setCurrentValue(blue);
+    }
+
+    private void setHSBSliders() {
+        colorMode(RGB, 255);
+        int r = (int)rgbSliders[0].getCurrentValue();
+        int g = (int)rgbSliders[1].getCurrentValue();
+        int b = (int)rgbSliders[2].getCurrentValue();
+        int color = color(r, g, b);
+        colorMode(HSB, 360);
+        int hue = (int)hue(color);
+        int saturation = (int)saturation(color);
+        int brightness = (int)brightness(color);
+        hsbSliders[0].setCurrentValue(hue);
+        hsbSliders[1].setCurrentValue(saturation);
+        hsbSliders[2].setCurrentValue(brightness);
     }
 
 }
