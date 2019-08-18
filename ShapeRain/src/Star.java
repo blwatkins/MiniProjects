@@ -7,7 +7,7 @@ public class Star extends Polygon {
         super(p, position, points, radius);
     }
 
-    public void initVertices(int points) {
+    protected void initVertices(int points) {
         float theta = 0;
         points = PApplet.constrain(points, 3, 20);
         vertices = new PVector[points * 2];
