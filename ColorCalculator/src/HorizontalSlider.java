@@ -40,10 +40,20 @@ public class HorizontalSlider {
         active = false;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
     public float getCurrentValue() {
         float valueX = sliderValue.getPosition().x;
         float value = PApplet.map(valueX, position.x, position.x + width, minValue, maxValue);
         return value;
+    }
+
+    public void setCurrentValue(float value) {
+        value = PApplet.constrain(value, minValue, maxValue);
+        float x = PApplet.map(value, minValue, maxValue, position.x, position.x + width);
+        sliderValue.updatePosition(x, position.x, position.x + width);
     }
 
     public void display() {
