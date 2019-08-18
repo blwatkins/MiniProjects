@@ -49,4 +49,12 @@ public class Polygon {
         p.popMatrix();
     }
 
+    public void fade() {
+        color.setAlpha(color.getAlpha() - 1);
+    }
+
+    public boolean isFaded() {
+        return color.getAlpha() == 0;
+    }
+
 }
