@@ -2,11 +2,11 @@ import processing.core.PApplet;
 import processing.core.PVector;
 
 public class Polygon {
-    private PApplet p;
-    private PVector position;
-    private PVector[] vertices;
-    private Color color;
-    private float radius;
+    protected PApplet p;
+    protected PVector position;
+    protected PVector[] vertices;
+    protected Color color;
+    protected float radius;
 
     public Polygon(PApplet p, PVector position, int sides, float radius) {
         this.p = p;
@@ -16,11 +16,11 @@ public class Polygon {
         init(sides);
     }
 
-    private void init(int sides) {
+    protected void init(int sides) {
         initVertices(sides);
     }
 
-    private void initVertices(int sides) {
+    protected void initVertices(int sides) {
         float theta = 0;
         sides = PApplet.constrain(sides, 3, 20);
         vertices = new PVector[sides];
