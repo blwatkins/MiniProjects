@@ -61,7 +61,6 @@ public class HorizontalSlider {
         displayBar();
         displayEndpoints();
         sliderValue.display();
-        displayIntValue();
 
         if (active) {
             moveSliderValue();
