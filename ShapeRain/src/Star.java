@@ -13,7 +13,7 @@ public class Star extends Polygon {
         vertices = new PVector[points * 2];
         float deltaTheta = p.TWO_PI / points * 2;
 
-        for (int i = 0; i < points; i++) {
+        for (int i = 0; i < vertices.length; i++) {
             float r = radius;
 
             if (i % 2 == 0) {
