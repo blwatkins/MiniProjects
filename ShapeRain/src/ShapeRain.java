@@ -32,7 +32,7 @@ public class ShapeRain extends PApplet {
         float x = random(width);
         float y = random(height);
 
-        Polygon p = new Star(this, new PVector(x, y), 5, 10);
+        Polygon p = new Circle(this, new PVector(x, y), 10);
         shapes.add(p);
 
         for (Polygon shape: shapes) {
