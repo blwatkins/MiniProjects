@@ -20,6 +20,11 @@ public class Color {
         a = (int)p.alpha(color);
     }
 
+    public int getColor() {
+        p.colorMode(p.RGB, 255);
+        return p.color(r, g, b, a);
+    }
+
     public int getRed() {
         return r;
     }
