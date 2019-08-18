@@ -29,6 +29,7 @@ public class ColorCalculator extends PApplet {
         sliderLength = (width / 2F) - (width / 8F);
         sliderHeight = (height / 40F);
         initHSBSliders();
+        initRGBSliders();
     }
 
     public void draw(){
@@ -37,19 +38,38 @@ public class ColorCalculator extends PApplet {
             hsbSliders[i].display();
         }
 
+        for (int i = 0; i < rgbSliders.length; i++) {
+            rgbSliders[i].display();
+        }
+
     }
 
     public void mousePressed() {
-        for (int i = 0; i < hsbSliders.length; i++) {
-            hsbSliders[i].mousePressed(mouseX, mouseY);
+        for (HorizontalSlider slider: hsbSliders) {
+            slider.mousePressed(mouseX, mouseY);
+        }
+
+        for (HorizontalSlider slider: rgbSliders) {
+            slider.mousePressed(mouseX, mouseY);
         }
     }
 
     private void initHSBSliders() {
         hsbSliders = new HorizontalSlider[3];
         PVector sliderPos = new PVector(width / 16, 16 * height / 20);
+
         for (int i = 0; i < hsbSliders.length; i++) {
             hsbSliders[i] = new HorizontalSlider(this, sliderPos, sliderLength, sliderHeight, 0, 360);
+            sliderPos.add(new PVector(0, sliderHeight * 2));
+        }
+    }
+
+    private void initRGBSliders() {
+        rgbSliders = new HorizontalSlider[3];
+        PVector sliderPos = new PVector(width/2 + width / 16, 16 * height / 20);
+
+        for (int i = 0; i < rgbSliders.length; i++) {
+            rgbSliders[i] = new HorizontalSlider(this, sliderPos, sliderLength, sliderHeight, 0, 255);
             sliderPos.add(new PVector(0, sliderHeight * 2));
         }
     }
