@@ -5,27 +5,19 @@ public class Polygon {
     private PApplet p;
     private PVector position;
     private PVector[] vertices;
-    private int[] color;
+    private Color color;
     private float radius;
 
     public Polygon(PApplet p, PVector position, int sides, float radius) {
         this.p = p;
         this.position = position.copy();
         this.radius = radius;
+        color = new Color(p, p.color(0));
         init(sides);
     }
 
     private void init(int sides) {
-        initColor();
         initVertices(sides);
-    }
-
-    private void initColor() {
-        color = new int[4];
-        color[0] = 0;
-        color[1] = 0;
-        color[2] = 0;
-        color[3] = 255;
     }
 
     private void initVertices(int sides) {
