@@ -1,9 +1,5 @@
 # Projects
 
-## Color Calculator
-
-[Java Code](https://github.com/blwatkins/MiniProjects/tree/master/ColorCalculator/src)
-
 ## Colorful Bubbles
 
 A collection of bubbles that randomly move according to the mouse position.
@@ -36,7 +32,3 @@ A visualization of data from [Today in History](http://history.muffinlabs.com/) 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/R_a83uiELcI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 [Processing Code](https://github.com/blwatkins/MiniProjects/tree/master/ThisDayInHistory)
-
-## Shape Rain
-
-[Java Code](https://github.com/blwatkins/MiniProjects/tree/master/ShapeRain/src)
