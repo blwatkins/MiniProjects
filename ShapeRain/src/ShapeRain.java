@@ -69,8 +69,8 @@ public class ShapeRain extends PApplet {
         if (key == 's') {
             shapeType = (int)random(0, 3);
             shapePoints = (int)random(3, 10);
-            println(shapeType, shapePoints);
         }
+
     }
 
 }
