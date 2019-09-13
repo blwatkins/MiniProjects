@@ -3,7 +3,6 @@
 
 import java.util.ArrayList;
 
-import color.Color;
 import color.ColorGenerator;
 import processing.core.PApplet;
 import processing.core.PVector;
