@@ -2,6 +2,9 @@
 // Main Class
 
 import java.util.ArrayList;
+
+import color.Color;
+import color.ColorGenerator;
 import processing.core.PApplet;
 import processing.core.PVector;
 import shape.Shape;
@@ -11,6 +14,9 @@ import shape.Star;
 
 public class ShapeRain extends PApplet {
     private ArrayList<Shape> shapes;
+    private ColorGenerator colorGenerator;
+    private float colorTimer;
+    private float colorTimerMax;
     private int shapeType;
     private int shapePoints;
     private float n;
@@ -31,8 +37,11 @@ public class ShapeRain extends PApplet {
 
     public void setup() {
         shapes = new ArrayList<>();
+        colorGenerator = new ColorGenerator(this);
         shapeType = (int)random(0, 3);
         shapePoints = (int)random(3, 10);
+        colorTimer = 0;
+        colorTimerMax = 500;
     }
 
     public void draw(){
@@ -40,6 +49,8 @@ public class ShapeRain extends PApplet {
         float x = random(width);
         float y = random(height);
         float size = (noise(n) * 9.5F) + 0.5F;
+        int col = getColor();
+
         Shape p;
 
         if (shapeType == 0) {
@@ -50,6 +61,7 @@ public class ShapeRain extends PApplet {
             p = new Star(this, new PVector(x, y), shapePoints, size);
         }
 
+        p.setColor(col);
         shapes.add(p);
 
         for (Shape shape: shapes) {
@@ -65,15 +77,30 @@ public class ShapeRain extends PApplet {
         }
 
         n += 0.01;
+        colorTimer = (colorTimer + 1f) % colorTimerMax;
     }
 
     public void keyPressed() {
 
-        if (key == 's') {
+        if (key == 'a') {
+            colorGenerator.setRandomColorType();
+        } else if (key == 's') {
             shapeType = (int)random(0, 3);
             shapePoints = (int)random(3, 10);
         }
 
+    }
+
+    public int getColor() {
+        int col = color(255);
+
+        if (colorGenerator.isRGB()) {
+            col = colorGenerator.randomColor();
+        } else if (colorGenerator.isHSB()) {
+            col = colorGenerator.mapColor(colorTimer, 0, colorTimerMax, 360, 360);
+        }
+
+        return col;
     }
 
 }
