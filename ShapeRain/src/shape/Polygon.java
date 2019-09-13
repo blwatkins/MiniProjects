@@ -1,4 +1,4 @@
-// Polygon Class
+package shape;
 
 import processing.core.PApplet;
 import processing.core.PVector;

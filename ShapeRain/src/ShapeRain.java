@@ -4,6 +4,9 @@
 import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PVector;
+import shape.Circle;
+import shape.Polygon;
+import shape.Star;
 
 public class ShapeRain extends PApplet {
     private ArrayList<Polygon> shapes;

@@ -1,5 +1,8 @@
+package shape;
+
 import processing.core.PApplet;
 import processing.core.PVector;
+import shape.Polygon;
 
 public class Star extends Polygon {
 
