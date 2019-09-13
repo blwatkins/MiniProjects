@@ -4,18 +4,13 @@ import processing.core.PApplet;
 import processing.core.PVector;
 import color.Color;
 
-public class Polygon {
-    protected PApplet p;
-    protected PVector position;
+public class Polygon extends Shape {
     protected PVector[] vertices;
-    protected Color color;
     protected float radius;
 
     public Polygon(PApplet p, PVector position, int sides, float radius) {
-        this.p = p;
-        this.position = position.copy();
+        super(p, position);
         this.radius = radius;
-        color = new Color(p, p.color(0, 0, 255));
         init(sides);
     }
 
@@ -37,16 +32,6 @@ public class Polygon {
         }
     }
 
-    public void setColor(int c) {
-        p.colorMode(p.RGB, 255);
-        int red = (int)p.red(c);
-        int green = (int)p.green(c);
-        int blue = (int)p.blue(c);
-        color.setRed(red);
-        color.setGreen(green);
-        color.setBlue(blue);
-    }
-
     public void display() {
         p.noStroke();
         p.fill(color.getColor());
@@ -60,14 +45,6 @@ public class Polygon {
 
         p.endShape(p.CLOSE);
         p.popMatrix();
-    }
-
-    public void fade() {
-        color.setAlpha(color.getAlpha() - 1);
-    }
-
-    public boolean isFaded() {
-        return color.getAlpha() == 0;
     }
 
 }

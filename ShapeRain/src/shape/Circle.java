@@ -3,10 +3,12 @@ package shape;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Circle extends Polygon {
+public class Circle extends Shape {
+    private float radius;
 
     public Circle(PApplet p, PVector position, float radius) {
-        super(p, position, 0, radius);
+        super(p, position);
+        this.radius = radius;
     }
 
     public void display() {
