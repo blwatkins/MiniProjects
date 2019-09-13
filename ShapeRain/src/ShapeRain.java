@@ -4,12 +4,13 @@
 import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PVector;
+import shape.Shape;
 import shape.Circle;
 import shape.Polygon;
 import shape.Star;
 
 public class ShapeRain extends PApplet {
-    private ArrayList<Polygon> shapes;
+    private ArrayList<Shape> shapes;
     private int shapeType;
     private int shapePoints;
     private float n;
@@ -32,7 +33,6 @@ public class ShapeRain extends PApplet {
         shapes = new ArrayList<>();
         shapeType = (int)random(0, 3);
         shapePoints = (int)random(3, 10);
-        println(shapeType, shapePoints);
     }
 
     public void draw(){
@@ -40,7 +40,7 @@ public class ShapeRain extends PApplet {
         float x = random(width);
         float y = random(height);
         float size = (noise(n) * 9.5F) + 0.5F;
-        Polygon p;
+        Shape p;
 
         if (shapeType == 0) {
             p = new Circle(this, new PVector(x, y), size);
@@ -52,7 +52,7 @@ public class ShapeRain extends PApplet {
 
         shapes.add(p);
 
-        for (Polygon shape: shapes) {
+        for (Shape shape: shapes) {
             shape.display();
             shape.fade();
         }
