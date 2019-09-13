@@ -1,5 +1,8 @@
+// Polygon Class
+
 import processing.core.PApplet;
 import processing.core.PVector;
+import color.Color;
 
 public class Polygon {
     protected PApplet p;
@@ -32,6 +35,16 @@ public class Polygon {
             theta += deltaTheta;
             vertices[i] = new PVector(x, y);
         }
+    }
+
+    public void setColor(int c) {
+        p.colorMode(p.RGB, 255);
+        int red = (int)p.red(c);
+        int green = (int)p.green(c);
+        int blue = (int)p.blue(c);
+        color.setRed(red);
+        color.setGreen(green);
+        color.setBlue(blue);
     }
 
     public void display() {
