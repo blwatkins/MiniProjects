@@ -109,7 +109,7 @@ public class ShapeRain extends PApplet {
 
     }
 
-    public int getColor() {
+    private int getColor() {
         int col = color(255);
 
         if (colorGenerator.isRGB()) {
