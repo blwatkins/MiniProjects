@@ -27,6 +27,10 @@ public abstract class Shape {
 
     public abstract void display();
 
+    public void move() {
+        position.y++;
+    }
+
     public void fade() {
         color.setAlpha(color.getAlpha() - 1);
     }
