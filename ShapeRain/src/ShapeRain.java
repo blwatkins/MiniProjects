@@ -19,6 +19,8 @@ public class ShapeRain extends PApplet {
     private int shapeType;
     private int shapePoints;
     private float n;
+    private boolean move;
+    private boolean backgroundIsWhite;
 
     public static void main(String[] passedArgs) {
         String[] appletArgs = new String[] { "ShapeRain" };  // first string MUST match name of class
@@ -41,10 +43,18 @@ public class ShapeRain extends PApplet {
         shapePoints = (int)random(3, 10);
         colorTimer = 0;
         colorTimerMax = 500;
+        move = false;
+        backgroundIsWhite = true;
     }
 
     public void draw(){
-        background(255);
+        noStroke();
+        if (backgroundIsWhite) {
+            fill(255, 50);
+        } else {
+            fill(0, 50);
+        }
+        rect(-10, -10, width + 10, height + 10);
         float x = random(width);
         float y = random(height);
         float size = (noise(n) * 9.5F) + 0.5F;
@@ -66,6 +76,11 @@ public class ShapeRain extends PApplet {
         for (Shape shape: shapes) {
             shape.display();
             shape.fade();
+
+            if (move) {
+                shape.move();
+            }
+
         }
 
         for (int i = shapes.size() - 1; i >= 0; i--) {
@@ -86,6 +101,10 @@ public class ShapeRain extends PApplet {
         } else if (key == 's') {
             shapeType = (int)random(0, 3);
             shapePoints = (int)random(3, 10);
+        } else if (key == 'd') {
+            move = !move;
+        } else if (key == 'f') {
+            backgroundIsWhite = !backgroundIsWhite;
         }
 
     }
