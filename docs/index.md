@@ -24,6 +24,15 @@ A dynamic pseudo-mesh drawn according to the mouse's location on the screen.  Th
 
 [p5.js Code](https://github.com/blwatkins/MiniProjects/tree/master/docs/DrawingWithNoise)
 
+## Shape Rain
+
+Random shapes appearing and fading from the screen.  The shapes can be circles, polygons, or stars, and the size of the shapes is determined by perlin noise.  Keyboard interaction changes the type and color of the shapes, as well as the background color.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Dev9-FmJM_E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Rp_czxXwexg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Java Code](https://github.com/blwatkins/MiniProjects/tree/master/ShapeRain/src)
 
 ## This Day in History
 
