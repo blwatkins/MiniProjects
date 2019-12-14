@@ -12,7 +12,8 @@ function setup() {
     lines = new Array();
     meshSize = 50;
     n = 0;
-    deltaAlpha = -3;
+    deltaAlpha = -1;
+    frameRate(60);
 }
 
 function draw() {
@@ -83,7 +84,7 @@ function hasPointIntersectingCircle(a, b) {
     for (let i = 0; i < points.length; i++) {
         let point = points[i];
 
-        if (!Object.is(point, a) && !Object.is(point, b)) {
+        if (!Object.is(point, a) && !Object.is(point, b) && point.getAlpha() > 200) {
             let distance = point.distance(center);
 
             if (distance < diameter / 2) {
