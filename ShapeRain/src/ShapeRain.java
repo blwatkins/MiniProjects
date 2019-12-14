@@ -33,7 +33,8 @@ public class ShapeRain extends PApplet {
     }
 
     public void settings() {
-        size(800, 800);
+        //size(800, 800);
+        fullScreen();
     }
 
     public void setup() {
@@ -105,6 +106,8 @@ public class ShapeRain extends PApplet {
             move = !move;
         } else if (key == 'f') {
             backgroundIsWhite = !backgroundIsWhite;
+        } else if (key == 'g') {
+            saveFrame("#######.png");
         }
 
     }
