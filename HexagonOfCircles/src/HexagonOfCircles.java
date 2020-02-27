@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 
-import color.HSB.BottomColorGenerator;
 import processing.core.PApplet;
 import processing.core.PVector;
 
 import color.ColorGenerator;
-import color.HSB.HSBColorGenerator;
-import color.RGB.RGBColorGenerator;
+import color.HSB.*;
+import color.RGB.*;
 
 
 public class HexagonOfCircles extends PApplet {
@@ -32,7 +31,7 @@ public class HexagonOfCircles extends PApplet {
     }
 
     public void setup() {
-        colorGenerator = new BottomColorGenerator(this);
+        randomColorGenerator();
         addingCircles = false;
         circles = new ArrayList<>();
         baseSize = 50;
@@ -119,7 +118,7 @@ public class HexagonOfCircles extends PApplet {
 
     public void keyPressed() {
         if (key == 'a') {
-            newColorGenerator();
+            randomColorGenerator();
 
             for (Circle c: circles) {
                 c.setColor(colorGenerator.randomColor());
@@ -139,14 +138,53 @@ public class HexagonOfCircles extends PApplet {
         }
     }
 
-    private void newColorGenerator() {
-//        int r = (int)random(100);
-//
-//        if (r % 2 == 0) {
-//            colorGenerator = new HSBColorGenerator(this);
-//        } else {
-//            colorGenerator = new RGBColorGenerator(this);
-//        }
+    private void randomColorGenerator() {
+        int r = (int)random(1400);
+
+        switch(r % 14) {
+            case 0:
+                colorGenerator = new BottomColorGenerator(this);
+                break;
+            case 1:
+                colorGenerator = new RainbowColorGenerator(this);
+                break;
+            case 2:
+                colorGenerator = new SoftColorGenerator(this);
+                break;
+            case 3:
+                colorGenerator = new TopColorGenerator(this);
+                break;
+            case 4:
+                colorGenerator = new WarmColorGenerator(this);
+                break;
+            case 5:
+                colorGenerator = new BlackColorGenerator(this);
+                break;
+            case 6:
+                colorGenerator = new BlueColorGenerator(this);
+                break;
+            case 7:
+                colorGenerator = new CyanColorGenerator(this);
+                break;
+            case 8:
+                colorGenerator = new GreenColorGenerator(this);
+                break;
+            case 9:
+                colorGenerator = new MagentaColorGenerator(this);
+                break;
+            case 10:
+                colorGenerator = new RandomColorGenerator(this);
+                break;
+            case 11:
+                colorGenerator = new RedColorGenerator(this);
+                break;
+            case 12:
+                colorGenerator = new WhiteColorGenerator(this);
+                break;
+            case 13:
+                colorGenerator = new YellowColorGenerator(this);
+                break;
+        }
     }
 
     private void randomSizeMode() {
