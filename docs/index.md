@@ -49,6 +49,8 @@ Using a recursive method to add circles in a hexagonal pattern.  Keyboard intera
 <img src="HexagonOfCircles/images/9.png" width="200" height="200"/>
 <img src="HexagonOfCircles/images/10.png" width="200" height="200"/>
 
+[Java Code](https://github.com/blwatkins/MiniProjects/tree/master/HexagonOfCircles/src)
+
 ## This Day in History
 
 A visualization of data from [Today in History](http://history.muffinlabs.com/) with images from Wikipedia.
