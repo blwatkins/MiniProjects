@@ -38,7 +38,7 @@ Random shapes appearing and fading from the screen.  The shapes can be circles, 
 
 Using a recursive method to add circles in a hexagonal pattern.  Keyboard interaction changes to size and color of the circles and can activate a glow effect.
 
-![HoC-1](HexagonOfCircles/images/1.png)
+<img src="HexagonOfCircles/images/1.png" width="200" height="200"/>
 
 ## This Day in History
 
