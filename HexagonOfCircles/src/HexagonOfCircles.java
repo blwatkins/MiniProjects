@@ -7,7 +7,6 @@ import color.ColorGenerator;
 import color.HSB.*;
 import color.RGB.*;
 
-
 public class HexagonOfCircles extends PApplet {
     private boolean addingCircles;
     private ArrayList<Circle> circles;
