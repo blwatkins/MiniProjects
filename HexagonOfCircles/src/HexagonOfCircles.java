@@ -27,7 +27,6 @@ public class HexagonOfCircles extends PApplet {
 
     public void settings() {
         size(600, 600);
-        //fullScreen();
     }
 
     public void setup() {
