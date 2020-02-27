@@ -34,6 +34,12 @@ Random shapes appearing and fading from the screen.  The shapes can be circles, 
 
 [Java Code](https://github.com/blwatkins/MiniProjects/tree/master/ShapeRain/src)
 
+## Hexagon of Circles
+
+Using a recursive method to add circles in a hexagonal pattern.  Keyboard interaction changes to size and color of the circles and can activate a glow effect.
+
+![HoC-1](HexagonOfCircles/images/1.png)
+
 ## This Day in History
 
 A visualization of data from [Today in History](http://history.muffinlabs.com/) with images from Wikipedia.
