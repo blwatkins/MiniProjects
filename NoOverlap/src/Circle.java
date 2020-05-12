@@ -14,6 +14,13 @@ public class Circle {
         color = p.color((int)p.random(255), (int)p.random(255), (int)p.random(255));
     }
 
+    public Circle(PApplet p, PVector position) {
+        this.p = p;
+        this.position = position.copy();
+        radius = p.random(5, 50);
+        color = p.color((int)p.random(255), (int)p.random(255), (int)p.random(255));
+    }
+
     public PVector getPosition() {
         return position;
     }
