@@ -14,6 +14,14 @@ public class Circle {
         color = p.color((int)p.random(255), (int)p.random(255), (int)p.random(255));
     }
 
+    public PVector getPosition() {
+        return position;
+    }
+
+    public float getRadius() {
+        return radius;
+    }
+
     public void display() {
         p.fill(color);
         p.noStroke();
