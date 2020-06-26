@@ -1,4 +1,4 @@
-class GreenColorGenerator {
+class GreenColorGenerator extends RGBColorGenerator{
 
     randomColor() {
         colorMode(RGB, 255);
