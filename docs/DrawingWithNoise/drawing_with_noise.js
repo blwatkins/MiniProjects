@@ -45,6 +45,7 @@ function keyTyped() {
 }
 
 function displayBackground() {
+    colorMode(RGB, 255);
 
     if (hasBlackBackground) {
         background(0);
