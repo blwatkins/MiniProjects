@@ -1,10 +1,10 @@
 class ColorGeneratorFactory {
 
     randomColorGenerator() {
-        let r = int(random(1200));
+        let r = int(random(1300));
         let colorGenerator = null;
 
-        switch (r % 12) {
+        switch (r % 13) {
             case 1:
                 colorGenerator = new BlackColorGenerator();
                 break;
@@ -37,6 +37,9 @@ class ColorGeneratorFactory {
                 break;
             case 11:
                 colorGenerator = new SoftColorGenerator();
+                break;
+            case 12:
+                colorGenerator = new TopColorGenerator();
                 break;
             default:
                 colorGenerator = new RandomColorGenerator();
