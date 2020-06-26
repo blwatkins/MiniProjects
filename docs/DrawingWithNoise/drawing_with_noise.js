@@ -22,6 +22,7 @@ function setup() {
     colorGeneratorFactory = new ColorGeneratorFactory();
     colorGenerator = colorGeneratorFactory.randomColorGenerator();
     frameRate(60);
+    createInstructions();
 }
 
 function draw() {
@@ -42,6 +43,19 @@ function keyTyped() {
     } else if (key == 's') {
         colorGenerator = colorGeneratorFactory.randomColorGenerator();
     }
+}
+
+function createInstructions() {
+    let div = createElement('div');
+    let h1 = createElement('h1', 'Instructions');
+    let instructionList = createElement('ul');
+    let instruction_a = createElement('li', "Press the 'a' key to change the background color to black or white");
+    let instruction_s = createElement('li', "Press the 's' key to change the color scheme");
+    div.id('instructions');
+    h1.parent(div);
+    instructionList.parent(div);
+    instruction_a.parent(instructionList);
+    instruction_s.parent(instructionList);
 }
 
 function displayBackground() {
