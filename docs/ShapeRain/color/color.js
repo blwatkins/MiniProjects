@@ -50,6 +50,6 @@ class Color {
 
     getColor() {
         colorMode(RGB, 255);
-        return color(r, g, b, a);
+        return color(this.r, this.g, this.b, this.a);
     }
 }
