@@ -1,10 +1,10 @@
 class ColorGeneratorFactory {
 
     randomColorGenerator() {
-        let r = int(random(500));
+        let r = int(random(600));
         let colorGenerator = null;
 
-        switch (r % 5) {
+        switch (r % 6) {
             case 1:
                 colorGenerator = new BlackColorGenerator();
                 break;
@@ -17,8 +17,11 @@ class ColorGeneratorFactory {
             case 4:
                 colorGenerator = new GreenColorGenerator();
                 break;
-            default:
+            case 5:
                 colorGenerator = new MagentaColorGenerator();
+                break;
+            default:
+                colorGenerator = new RandomColorGenerator();
                 break;
         }
 
