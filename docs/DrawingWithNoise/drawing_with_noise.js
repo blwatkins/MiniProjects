@@ -1,5 +1,6 @@
 // Drawing with Noise sketch
 // Press 'a' to change background color
+// Press 's' to change color scheme
 
 var points;
 var lines;
@@ -35,7 +36,6 @@ function keyTyped() {
     if (key == 'a') {
         hasBlackBackground = !hasBlackBackground;
     }
-
 }
 
 function displayBackground() {
