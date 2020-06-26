@@ -1,25 +1,28 @@
 // Line Class
 
-function Line(s, e) {
-    this.s = createVector(s.getX(), s.getY());
-    this.e = createVector(e.getX(), e.getY());
-    this.col = color(255, 0, 0);
+class Line {
 
-    this.display = function() {
-        stroke(this.col);
-        line(this.s.x, this.s.y, this.e.x, this.e.y);
+    constructor(start, end) {
+        this.start = createVector(start.getX(), start.getY());
+        this.end = createVector(end.getX(), end.getY());
+        this.color = color(255, 0, 0);
+    }
+
+    display() {
+        stroke(this.color);
+        line(this.start.x, this.start.y, this.end.x, this.end.y);
         this.fade();
-    };
-    
-    this.fade = function() {
-        let alphaValue = alpha(this.col);
+    }
+
+    fade() {
+        let alphaValue = alpha(this.color);
         alphaValue += deltaAlpha;
         alphaValue = constrain(alphaValue, 0, 255);
-        this.col.setAlpha(alphaValue);
-    };
+        this.color.setAlpha(alphaValue);
+    }
 
-    this.isFaded = function() {
-        let alphaValue = alpha(this.col);
+    isFaded() {
+        let alphaValue = alpha(this.color);
         return alphaValue <= 0;
-    };
+    }
 }
