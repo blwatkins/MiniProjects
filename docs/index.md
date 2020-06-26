@@ -32,7 +32,11 @@ Random shapes appearing and fading from the screen.  The shapes can be circles, 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Rp_czxXwexg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+[Online Interactive Version](ShapeRain/index.html)
+
 [Java Code](https://github.com/blwatkins/MiniProjects/tree/master/ShapeRain/src)
+
+[p5.js Code](https://github.com/blwatkins/MiniProjects/tree/master/docs/ShapeRain)
 
 ## Hexagon of Circles
 
