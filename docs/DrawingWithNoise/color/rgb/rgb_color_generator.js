@@ -5,7 +5,7 @@ class RGBColorGenerator {
         return color(0);
     }
 
-    mapColor() {
+    mapColor(value, minValue, maxValue, saturation, brightness) {
         return this.randomColor();
     }
 }
