@@ -1,10 +1,12 @@
 // Drawing with Noise sketch
+// Press 'a' to change background color
 
 var points;
 var lines;
 var meshSize;
 var n;
 var deltaAlpha;
+var hasBlackBackground;
 
 function setup() {
     createCanvas(windowWidth-20, windowHeight-20, P2D);
@@ -13,11 +15,18 @@ function setup() {
     meshSize = 50;
     n = 0;
     deltaAlpha = -1;
+    hasBlackBackground = true;
     frameRate(60);
 }
 
 function draw() {
-    background(255);
+
+    if (hasBlackBackground) {
+        background(0);
+    } else {
+        background(255);
+    }
+    
     let x = random(mouseX - meshSize, mouseX + meshSize);
     let y = random(mouseY - meshSize, mouseY + meshSize);
     points.push(new Point(x, y));
@@ -39,6 +48,14 @@ function draw() {
     if (n > 50000) {
         n = 0;
     }
+}
+
+function keyTyped() {
+
+    if (key == 'a') {
+        hasBlackBackground = !hasBlackBackground;
+    }
+
 }
 
 function removeFadedPoints() {
