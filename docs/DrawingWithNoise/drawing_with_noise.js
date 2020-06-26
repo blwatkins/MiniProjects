@@ -39,6 +39,8 @@ function keyTyped() {
 
     if (key == 'a') {
         hasBlackBackground = !hasBlackBackground;
+    } else if (key == 's') {
+        colorGenerator = colorGeneratorFactory.randomColorGenerator();
     }
 }
 
