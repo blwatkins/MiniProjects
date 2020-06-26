@@ -20,34 +20,14 @@ function setup() {
 }
 
 function draw() {
-
-    if (hasBlackBackground) {
-        background(0);
-    } else {
-        background(255);
-    }
-    
-    let x = random(mouseX - meshSize, mouseX + meshSize);
-    let y = random(mouseY - meshSize, mouseY + meshSize);
-    points.push(new Point(x, y));
+    displayBackground();
+    addPoint();
     addLines();
-
-    for (let i = 0; i < points.length; i++) {
-        points[i].display();
-    }
-
-    for (let i = 0; i < lines.length; i++) {
-        lines[i].display();
-    }
-
+    displayPoints();
+    displayLines();
     removeFadedPoints();
     removeFadedLines();
-    meshSize = noise(n) * min(width, height) / 8;
-    n += 0.01;
-
-    if (n > 50000) {
-        n = 0;
-    }
+    setMeshSize();
 }
 
 function keyTyped() {
@@ -58,24 +38,19 @@ function keyTyped() {
 
 }
 
-function removeFadedPoints() {
-    for (let i = points.length - 1; i >= 0; i--) {
-        let point = points[i];
+function displayBackground() {
 
-        if (point.isFaded()) {
-            points.splice(i, 1);
-        }
+    if (hasBlackBackground) {
+        background(0);
+    } else {
+        background(255);
     }
 }
 
-function removeFadedLines() {
-    for (let i = lines.length - 1; i >= 0; i--) {
-        let line = lines[i];
-
-        if (line.isFaded()) {
-            lines.splice(i, 1);
-        }
-    }
+function addPoint() {
+    let x = random(mouseX - meshSize, mouseX + meshSize);
+    let y = random(mouseY - meshSize, mouseY + meshSize);
+    points.push(new Point(x, y));
 }
 
 function addLines() {
@@ -118,4 +93,47 @@ function createCenterPoint(a, b) {
     let centerX = (a.position.x + b.position.x) / 2;
     let centerY = (a.position.y + b.position.y) / 2;
     return (new Point(centerX, centerY));
+}
+
+function displayPoints() {
+
+    for (let i = 0; i < points.length; i++) {
+        points[i].display();
+    }
+}
+
+function displayLines() {
+
+    for (let i = 0; i < lines.length; i++) {
+        lines[i].display();
+    }
+}
+
+function removeFadedPoints() {
+    for (let i = points.length - 1; i >= 0; i--) {
+        let point = points[i];
+
+        if (point.isFaded()) {
+            points.splice(i, 1);
+        }
+    }
+}
+
+function removeFadedLines() {
+    for (let i = lines.length - 1; i >= 0; i--) {
+        let line = lines[i];
+
+        if (line.isFaded()) {
+            lines.splice(i, 1);
+        }
+    }
+}
+
+function setMeshSize() {
+    meshSize = noise(n) * min(width, height) / 8;
+    n += 0.01;
+
+    if (n > 50000) {
+        n = 0;
+    }
 }
