@@ -19,6 +19,10 @@ class Point {
         return this.position.y;
     }
 
+    setColor(color) {
+        this.color = color;
+    }
+
     distance(point) {
         let x1 = this.position.x;
         let y1 = this.position.y;

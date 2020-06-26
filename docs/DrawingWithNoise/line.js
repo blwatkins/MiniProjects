@@ -8,6 +8,10 @@ class Line {
         this.color = color(255, 0, 0);
     }
 
+    setColor(color) {
+        this.color = color;
+    }
+
     display() {
         stroke(this.color);
         line(this.start.x, this.start.y, this.end.x, this.end.y);

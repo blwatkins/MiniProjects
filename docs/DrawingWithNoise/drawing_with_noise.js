@@ -8,6 +8,8 @@ var meshSize;
 var n;
 var deltaAlpha;
 var hasBlackBackground;
+var colorGeneratorFactory;
+var colorGenerator;
 
 function setup() {
     createCanvas(windowWidth-20, windowHeight-20, P2D);
@@ -17,6 +19,8 @@ function setup() {
     n = 0;
     deltaAlpha = -1;
     hasBlackBackground = true;
+    colorGeneratorFactory = new ColorGeneratorFactory();
+    colorGenerator = colorGeneratorFactory.randomColorGenerator();
     frameRate(60);
 }
 
@@ -50,7 +54,9 @@ function displayBackground() {
 function addPoint() {
     let x = random(mouseX - meshSize, mouseX + meshSize);
     let y = random(mouseY - meshSize, mouseY + meshSize);
-    points.push(new Point(x, y));
+    let point = new Point(x, y);
+    point.setColor(colorGenerator.randomColor());
+    points.push(point);
 }
 
 function addLines() {
@@ -62,7 +68,9 @@ function addLines() {
 
         if (point.getAlpha() > 200) {
             if (!hasPointIntersectingCircle(lastPoint, point)) {
-                lines.push(new Line(lastPoint, point));
+                let line = new Line(lastPoint, point);
+                line.setColor(colorGenerator.randomColor());
+                lines.push(line);
             }
         }
     }
