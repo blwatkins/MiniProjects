@@ -36,7 +36,7 @@ class ColorGeneratorFactory {
                 colorGenerator = new RainbowColorGenerator();
                 break;
             case 11:
-                colorGenerator = new SoftColorGenerator();
+                colorGenerator = new CoolColorGenerator();
                 break;
             case 12:
                 colorGenerator = new TopColorGenerator();

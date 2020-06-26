@@ -1,4 +1,4 @@
-class SoftColorGenerator extends HSBColorGenerator {
+class CoolColorGenerator extends HSBColorGenerator {
 
     mapColor(value, minValue, maxValue, saturation, brightness) {
         colorMode(HSB, 360);
