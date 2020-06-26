@@ -8,8 +8,8 @@ var deltaAlpha;
 
 function setup() {
     createCanvas(windowWidth-20, windowHeight-20, P2D);
-    points = new Array();
-    lines = new Array();
+    points = [];
+    lines = [];
     meshSize = 50;
     n = 0;
     deltaAlpha = -1;
