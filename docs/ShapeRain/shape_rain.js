@@ -4,6 +4,7 @@
 var shapes;
 var n;
 var isMoving;
+var hasBlackBackground;
 
 function setup() {
     createCanvas(windowWidth-20, windowHeight-20);
@@ -11,10 +12,11 @@ function setup() {
     shapes = [];
     n = 0;
     isMoving = false;
+    hasBlackBackground = true;
 }
 
 function draw() {
-    background(255);
+    displayBackground();
     addShape();
     displayShapes();
     moveShapes();
@@ -23,9 +25,23 @@ function draw() {
 
 function keyTyped() {
 
-    if (key == 's') {
+    if (key == 'a') {
+        hasBlackBackground = !hasBlackBackground
+    } else if (key == 's') {
         isMoving = !isMoving;
     }
+}
+
+function displayBackground() {
+    noStroke();
+
+    if (hasBlackBackground) {
+        fill(0, 50);
+    } else {
+        fill(255, 50);
+    }
+
+    rect(-10, -10, width + 10, height + 10);
 }
 
 function addShape() {
