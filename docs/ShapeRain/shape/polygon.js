@@ -23,7 +23,7 @@ class Polygon extends Shape {
     display() {
         push();
         noStroke();
-        fill(this.color);
+        fill(this.color.getColor());
         translate(this.position.x, this.position.y);
         beginShape();
 

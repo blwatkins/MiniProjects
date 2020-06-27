@@ -49,7 +49,7 @@ function addShape() {
     let y = random(height);
     let position = createVector(x, y);
     let radius = (noise(n) * 9.5) + 0.5;
-    let shape = new Circle(position, radius);
+    let shape = new Polygon(position, radius, 8);
     shapes.push(shape);
 }
 
