@@ -1,20 +1,31 @@
 // Shape Rain sketch
+// Press 's' to make shapes move
 
 var shapes;
 var n;
+var isMoving;
 
 function setup() {
     createCanvas(windowWidth-20, windowHeight-20);
     frameRate(60);
     shapes = [];
     n = 0;
+    isMoving = false;
 }
 
 function draw() {
     background(255);
     addShape();
     displayShapes();
+    moveShapes();
     incrementN();
+}
+
+function keyTyped() {
+
+    if (key == 's') {
+        isMoving = !isMoving;
+    }
 }
 
 function addShape() {
@@ -31,6 +42,15 @@ function displayShapes() {
         shape.display();
         shape.fade();
     });
+}
+
+function moveShapes() {
+
+    if (isMoving) {
+        shapes.forEach((shape) => {
+            shape.move();
+        });
+    }
 }
 
 function incrementN() {
