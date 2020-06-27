@@ -20,6 +20,7 @@ function draw() {
     addShape();
     displayShapes();
     moveShapes();
+    removeFadedShapes();
     incrementN();
 }
 
@@ -66,6 +67,16 @@ function moveShapes() {
         shapes.forEach((shape) => {
             shape.move();
         });
+    }
+}
+
+function removeFadedShapes() {
+    
+    for (let i = shapes.length - 1; i >= 0; i--) {
+
+        if (shapes[i].isFaded()) {
+            shapes.splice(i, 1);
+        }
     }
 }
 

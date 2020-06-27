@@ -19,6 +19,6 @@ class Shape {
     }
 
     isFaded() {
-        this.color.getAlpha() <= 0;
+        return this.color.getAlpha() <= 0;
     }
 }
