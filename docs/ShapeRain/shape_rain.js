@@ -2,6 +2,7 @@
 // Press 's' to make shapes move
 
 var shapes;
+var shapeFactory;
 var n;
 var isMoving;
 var hasBlackBackground;
@@ -10,6 +11,7 @@ function setup() {
     createCanvas(windowWidth-20, windowHeight-20);
     frameRate(60);
     shapes = [];
+    shapeFactory = new ShapeFactory();
     n = 0;
     isMoving = false;
     hasBlackBackground = true;
@@ -30,6 +32,8 @@ function keyTyped() {
         hasBlackBackground = !hasBlackBackground
     } else if (key == 's') {
         isMoving = !isMoving;
+    } else if (key == 'd') {
+        shapeFactory.randomize();
     }
 }
 
@@ -50,7 +54,7 @@ function addShape() {
     let y = random(height);
     let position = createVector(x, y);
     let radius = (noise(n) * 9.5) + 0.5;
-    let shape = new Polygon(position, radius, 8);
+    let shape = shapeFactory.getShape(position, radius);
     shapes.push(shape);
 }
 

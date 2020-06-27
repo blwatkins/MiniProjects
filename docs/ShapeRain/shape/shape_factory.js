@@ -5,6 +5,7 @@ class ShapeFactory {
         this._polygon = 1;
         this.type = this._circle;
         this.sideCount = 0;
+        this.randomize();
     }
 
     getShape(position, radius) {
