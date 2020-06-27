@@ -3,6 +3,7 @@ class Shape {
     constructor(position) {
         this.position = createVector(position.x, position.y);
         this.color = new Color(color(0, 0, 255));
+        this.speedY = random(0, 2);
     }
 
     display() {
@@ -10,7 +11,7 @@ class Shape {
     }
 
     move() {
-        this.position.y++;
+        this.position.y += this.speedY;
     }
 
     fade() {
