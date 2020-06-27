@@ -26,11 +26,9 @@ class ShapeFactory {
         switch (r % 2) {
             case 1: 
                 this.type = this._circle;
-                console.log('cirlce');
                 break;
             default:
                 this.type = this._polygon;
-                console.log('polygon');
                 break;
         }
 
