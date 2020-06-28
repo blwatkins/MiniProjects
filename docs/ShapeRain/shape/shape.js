@@ -7,7 +7,7 @@ class Shape {
     }
 
     display() {
-        console.log('Nothing');
+
     }
 
     move() {
