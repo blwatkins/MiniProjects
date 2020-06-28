@@ -9,15 +9,15 @@ class ShapeFactory {
         this.randomize();
     }
 
-    getShape(position, radius) {
+    getShape(position, radius, color) {
         let shape = null;
 
         if (this.type === this._circle) {
-            shape = new Circle(position, radius)
+            shape = new Circle(position, color, radius)
         } else if (this.type === this._polygon) {
-            shape = new Polygon(position, radius, this.sideCount);
+            shape = new Polygon(position, color, radius, this.sideCount);
         } else {
-            shape = new Star(position, radius, this.sideCount);
+            shape = new Star(position, color, radius, this.sideCount);
         }
 
         return shape;

@@ -1,6 +1,6 @@
 class ColorGeneratorFactory {
 
-    randomColorGenerator() {
+    getRandomColorGenerator() {
         let r = int(random(1400));
         let colorGenerator = null;
 

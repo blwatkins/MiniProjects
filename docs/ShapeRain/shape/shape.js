@@ -1,8 +1,8 @@
 class Shape {
 
-    constructor(position) {
+    constructor(position, color) {
         this.position = createVector(position.x, position.y);
-        this.color = new Color(color(0, 0, 255));
+        this.color = new Color(color);
         this.speedY = random(0, 2);
     }
 

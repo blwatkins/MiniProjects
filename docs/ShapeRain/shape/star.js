@@ -1,7 +1,7 @@
 class Star extends Polygon {
 
-    constructor(postition, radius, pointCount) {
-        super(postition, radius, pointCount);
+    constructor(postition, color, radius, pointCount) {
+        super(postition, color, radius, pointCount);
     }
 
     _initVertices(pointCount) {

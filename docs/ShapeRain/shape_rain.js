@@ -1,17 +1,25 @@
 // Shape Rain sketch
+// Press 'a' to change the background to black or white
 // Press 's' to make shapes move
+// Press 'd' to change the shape type
+// Press 'f' to change the color scheme
 
 var shapes;
 var shapeFactory;
+var colorGeneratorFactory;
+var colorGenerator;
 var n;
 var isMoving;
 var hasBlackBackground;
+
 
 function setup() {
     createCanvas(windowWidth-20, windowHeight-20);
     frameRate(60);
     shapes = [];
     shapeFactory = new ShapeFactory();
+    colorGeneratorFactory = new ColorGeneratorFactory();
+    colorGenerator = colorGeneratorFactory.getRandomColorGenerator();
     n = 0;
     isMoving = false;
     hasBlackBackground = true;
@@ -28,12 +36,14 @@ function draw() {
 
 function keyTyped() {
 
-    if (key == 'a') {
+    if (key === 'a') {
         hasBlackBackground = !hasBlackBackground
-    } else if (key == 's') {
+    } else if (key === 's') {
         isMoving = !isMoving;
-    } else if (key == 'd') {
+    } else if (key === 'd') {
         shapeFactory.randomize();
+    } else if (key === 'f') {
+        colorGenerator = colorGeneratorFactory.getRandomColorGenerator();
     }
 }
 
@@ -54,7 +64,8 @@ function addShape() {
     let y = random(height);
     let position = createVector(x, y);
     let radius = (noise(n) * 9.5) + 0.5;
-    let shape = shapeFactory.getShape(position, radius);
+    let color = colorGenerator.randomColor();
+    let shape = shapeFactory.getShape(position, radius, color);
     shapes.push(shape);
 }
 

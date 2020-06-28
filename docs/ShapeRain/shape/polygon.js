@@ -1,7 +1,7 @@
 class Polygon extends Shape {
 
-    constructor(position, radius, sideCount) {
-        super(position);
+    constructor(position, color, radius, sideCount) {
+        super(position, color);
         this.radius = radius;
         this.vertices = [];
         this._initVertices(sideCount);

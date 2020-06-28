@@ -1,7 +1,7 @@
 class Circle extends Shape {
 
-    constructor(position, radius) {
-        super(position);
+    constructor(position, color, radius) {
+        super(position, color);
         this.radius = radius;
     }
 
