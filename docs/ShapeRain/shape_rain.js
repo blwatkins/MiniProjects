@@ -23,6 +23,8 @@ function setup() {
     n = 0;
     isMoving = false;
     hasBlackBackground = true;
+    frameRate(60);
+    createInstructions();
 }
 
 function draw() {
@@ -45,6 +47,24 @@ function keyTyped() {
     } else if (key === 'f') {
         colorGenerator = colorGeneratorFactory.getRandomColorGenerator();
     }
+}
+
+function createInstructions() {
+    let div = createElement('div');
+    let h1 = createElement('h1', 'Instructions');
+    let instructionList = createElement('ul');
+    let instructions = [];
+    instructions.push(createElement('li', "Press the 'a' key to change the background to black or white"));
+    instructions.push(createElement('li', "Press the 's' key to make the shapes move"));
+    instructions.push(createElement('li', "Press the 'd' key to change the shape type"));
+    instructions.push(createElement('li', "Press the 'f' key to change the color scheme"));
+    div.id('instructions');
+    h1.parent(div);
+    instructionList.parent(div);
+
+    instructions.forEach((instruction) => {
+        instruction.parent(instructionList);
+    });
 }
 
 function displayBackground() {
