@@ -15,6 +15,9 @@ A collection of small projects that I have created over the years
   * [OpenProcessing: Glow](https://www.openprocessing.org/sketch/138189/)
   * [The Nature of Code: Particle Systems](https://natureofcode.com/book/chapter-4-particle-systems/)
 
+### No Overlap
+  * [The Coding Train - 9.8: Random Circles with No Overlap](https://youtu.be/XATr_jdh-44)
+
 ### This Day in History
 
   * [Today in History](http://history.muffinlabs.com/)
