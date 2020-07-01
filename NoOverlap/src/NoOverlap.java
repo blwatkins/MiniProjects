@@ -1,7 +1,8 @@
+// Overlapping Algorithm from The Coding Train - https://youtu.be/XATr_jdh-44
+
 import java.util.ArrayList;
 
 import processing.core.PApplet;
-import processing.core.PVector;
 
 public class NoOverlap extends PApplet {
     private ArrayList<Circle> circles;
@@ -17,22 +18,42 @@ public class NoOverlap extends PApplet {
 
     public void setup() {
         circles = new ArrayList<>();
-
-        for (int i = 0; i < 200; i++) {
-            circles.add(new Circle(this));
-        }
     }
 
     public void draw() {
         background(0);
+        addCircle();
+        displayCircles();
+    }
+
+    public void keyPressed() {
+
+        if (key == 'a') {
+            circles.clear();
+        }
+    }
+
+    private void addCircle() {
+        Circle potentialCircle = new Circle(this);
+        boolean isOverlapping = false;
+
+        for (Circle circle: circles) {
+
+            if (potentialCircle.overlap(circle)) {
+                isOverlapping = true;
+                break;
+            }
+        }
+
+        if (!isOverlapping) {
+            circles.add(potentialCircle);
+        }
+    }
+
+    private void displayCircles() {
 
         for (Circle circle: circles) {
             circle.display();
         }
-    }
-
-    public void mousePressed() {
-        PVector position = new PVector(mouseX, mouseY);
-        circles.add(new Circle(this, position));
     }
 }

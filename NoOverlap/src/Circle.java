@@ -10,23 +10,8 @@ public class Circle {
     public Circle(PApplet p) {
         this.p = p;
         position = new PVector(p.random(p.width), p.random(p.height));
-        radius = p.random(5, 50);
+        radius = p.random(1, 50);
         color = p.color((int)p.random(255), (int)p.random(255), (int)p.random(255));
-    }
-
-    public Circle(PApplet p, PVector position) {
-        this.p = p;
-        this.position = position.copy();
-        radius = p.random(5, 50);
-        color = p.color((int)p.random(255), (int)p.random(255), (int)p.random(255));
-    }
-
-    public PVector getPosition() {
-        return position;
-    }
-
-    public float getRadius() {
-        return radius;
     }
 
     public void display() {
