@@ -1,4 +1,5 @@
 // Overlapping Algorithm from The Coding Train - https://youtu.be/XATr_jdh-44
+// Press 'a' to clear the circles
 
 import java.util.ArrayList;
 
