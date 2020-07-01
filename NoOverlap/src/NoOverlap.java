@@ -1,12 +1,18 @@
 // Overlapping Algorithm from The Coding Train - https://youtu.be/XATr_jdh-44
 // Press 'a' to clear the circles
+// Press 's' to change the color scheme
 
 import java.util.ArrayList;
 
 import processing.core.PApplet;
 
+import color.ColorGenerator;
+import color.ColorGeneratorFactory;
+
 public class NoOverlap extends PApplet {
     private ArrayList<Circle> circles;
+    private ColorGenerator colorGenerator;
+    private ColorGeneratorFactory colorGeneratorFactory;
 
     public static void main(String[] args) {
         String[] processingArgs = {"NoOverlap"};
@@ -19,6 +25,8 @@ public class NoOverlap extends PApplet {
 
     public void setup() {
         circles = new ArrayList<>();
+        colorGeneratorFactory = new ColorGeneratorFactory(this);
+        colorGenerator = colorGeneratorFactory.getRandomColorGenerator();
     }
 
     public void draw() {
@@ -31,6 +39,8 @@ public class NoOverlap extends PApplet {
 
         if (key == 'a') {
             circles.clear();
+        } else if (key == 's') {
+            changeColorScheme();
         }
     }
 
@@ -47,6 +57,7 @@ public class NoOverlap extends PApplet {
         }
 
         if (!isOverlapping) {
+            potentialCircle.setColor(colorGenerator.getRandomColor());
             circles.add(potentialCircle);
         }
     }
@@ -55,6 +66,15 @@ public class NoOverlap extends PApplet {
 
         for (Circle circle: circles) {
             circle.display();
+        }
+    }
+
+    private void changeColorScheme() {
+        colorGenerator = colorGeneratorFactory.getRandomColorGenerator();
+
+        for (Circle c: circles) {
+            int color = colorGenerator.getRandomColor();
+            c.setColor(color);
         }
     }
 }
