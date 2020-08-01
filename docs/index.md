@@ -36,6 +36,18 @@ Random shapes appearing and fading from the screen.  The shapes can be circles, 
 
 [p5.js Code](https://github.com/blwatkins/MiniProjects/tree/master/docs/ShapeRain)
 
+## No Overlap
+
+Random circles that appear on the screen without overlapping.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ADtOqAzG3FQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Online Interactive Version](NoOverlap/index.html)
+
+[Java Code](https://github.com/blwatkins/MiniProjects/tree/master/NoOverlap/src)
+
+[p5.js Code](https://github.com/blwatkins/MiniProjects/tree/master/docs/NoOverlap)
+
 ## Hexagon of Circles
 
 Using a recursive method to add circles in a hexagonal pattern.  Keyboard interaction changes the size and color of the circles and can activate a glow effect.
@@ -52,18 +64,6 @@ Using a recursive method to add circles in a hexagonal pattern.  Keyboard intera
 <img src="HexagonOfCircles/images/10.png" width="200" height="200"/>
 
 [Java Code](https://github.com/blwatkins/MiniProjects/tree/master/HexagonOfCircles/src)
-
-## No Overlap
-
-Random circles that appear on the screen without overlapping.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ADtOqAzG3FQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-[Online Interactive Version](NoOverlap/index.html)
-
-[Java Code](https://github.com/blwatkins/MiniProjects/tree/master/NoOverlap/src)
-
-[p5.js Code](https://github.com/blwatkins/MiniProjects/tree/master/docs/NoOverlap)
 
 ## This Day in History
 
