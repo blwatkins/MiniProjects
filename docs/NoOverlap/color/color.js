@@ -40,6 +40,10 @@ class Color {
         this.a = constrain(alpha, 0, 255);
     }
 
+    setColor(color) {
+        this._initColor(color);
+    }
+
     _initColor(color) {
         colorMode(RGB, 255);
         this.r = int(red(color));
