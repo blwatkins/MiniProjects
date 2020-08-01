@@ -9,5 +9,16 @@ function setup() {
 }
 
 function draw() {
-    ellipse(mouseX, mouseY, 50, 50);
+    background(0);
+    displayCircles();
+}
+
+function keyTyped() {
+    circles.push(new Circle());
+}
+
+function displayCircles() {
+    circles.forEach((circle) => {
+        circle.display();
+    })
 }

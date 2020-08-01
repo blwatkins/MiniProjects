@@ -13,7 +13,7 @@ class Circle {
     display() {
         fill(this.color.getColor());
         noStroke();
-        ellipse(position.x, position.y, radius * 2, radius * 2);
+        ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
     }
 
 }
