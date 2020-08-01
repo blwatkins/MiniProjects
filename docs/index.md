@@ -63,6 +63,8 @@ Random circles that appear on the screen without overlapping.
 
 [Java Code](https://github.com/blwatkins/MiniProjects/tree/master/NoOverlap/src)
 
+[p5.js Code](https://github.com/blwatkins/MiniProjects/tree/master/docs/NoOverlap)
+
 ## This Day in History
 
 A visualization of data from [Today in History](http://history.muffinlabs.com/) with images from Wikipedia.
