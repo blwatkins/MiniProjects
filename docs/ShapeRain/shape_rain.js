@@ -23,7 +23,6 @@ function setup() {
     n = 0;
     isMoving = false;
     hasBlackBackground = true;
-    frameRate(60);
     createInstructions();
 }
 
