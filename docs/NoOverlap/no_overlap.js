@@ -12,6 +12,7 @@ function setup() {
     circles = [];
     colorGeneratorFactory = new ColorGeneratorFactory();
     colorGenerator = colorGeneratorFactory.getRandomColorGenerator();
+    createInstructions();
 }
 
 function draw() {
@@ -27,6 +28,22 @@ function keyTyped() {
     } else if (key == 's') {
         changeColorScheme();
     }
+}
+
+function createInstructions() {
+    let div = createElement('div');
+    let h1 = createElement('h1', 'Instructions');
+    let instructionList = createElement('ul');
+    let instructions = [];
+    instructions.push(createElement('li', "Press the 'a' key to clear the circles"));
+    instructions.push(createElement('li', "Press the 's' key to change the color scheme"));
+    div.id('instructions');
+    h1.parent(div);
+    instructionList.parent(div);
+
+    instructions.forEach((instruction) => {
+        instruction.parent(instructionList);
+    });
 }
 
 function addCircle() {
