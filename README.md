@@ -2,6 +2,12 @@
 
 A collection of small projects that I have created over the years
 
+## Inspiration
+
+### RandomWalkers
+
+  * [OpenProcessing: "Blue growth"](https://www.openprocessing.org/sketch/178381)
+
 ## Sources
 
   * [Processing](https://processing.org/)
