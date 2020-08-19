@@ -1,6 +1,4 @@
 // Press 'a' to clear the screen
-// Press 'w' to increase the maximum speed
-// Press 's' to decrease the maximum speed
 
 import java.util.ArrayList;
 
@@ -13,8 +11,7 @@ import color.ColorGeneratorFactory;
 public class RandomWalkers extends PApplet {
     private ArrayList<Circle> circles;
     private ColorGenerator colorGenerator;
-    private ColorGeneratorFactory colorGeneratorFactory;
-    private int maxSpeed;
+    private Timer timer;
 
     public static void main(String[] args) {
         String[] processingArgs = {"RandomWalkers"};
@@ -27,13 +24,14 @@ public class RandomWalkers extends PApplet {
 
     public void setup() {
         circles = new ArrayList<>();
-        colorGeneratorFactory = new ColorGeneratorFactory(this);
+        ColorGeneratorFactory colorGeneratorFactory = new ColorGeneratorFactory(this);
         colorGenerator = colorGeneratorFactory.getRandomColorGenerator();
-        maxSpeed = 5;
+        timer = new Timer(this, 1000);
         background(0);
     }
 
     public void draw() {
+        addCircles();
         displayCircles();
         removeCircles();
     }
@@ -42,10 +40,6 @@ public class RandomWalkers extends PApplet {
 
         if (key == 'a') {
             clearScreen();
-        } else if (key == 'w') {
-            increaseMaxSpeed();
-        } else if (key == 's') {
-            decreaseMaxSpeed();
         }
     }
 
@@ -53,10 +47,18 @@ public class RandomWalkers extends PApplet {
         addCircle(mouseX, mouseY);
     }
 
+    private void addCircles() {
+
+        if (timer.isReady()) {
+            addCircle(random(width), random(height));
+            timer.reset();
+        }
+    }
+
     private void addCircle(float x, float y) {
         PVector position = new PVector(x, y);
         int color = colorGenerator.getRandomColor();
-        Circle circle = new Circle(this, position, maxSpeed);
+        Circle circle = new Circle(this, position, (int)random(5, 20));
         circle.setColor(color);
         circles.add(circle);
     }
@@ -83,15 +85,5 @@ public class RandomWalkers extends PApplet {
     private void clearScreen() {
         background(0);
         circles.clear();
-    }
-
-    private void increaseMaxSpeed() {
-        maxSpeed++;
-        maxSpeed = constrain(maxSpeed, 1, 20);
-    }
-
-    private void decreaseMaxSpeed() {
-        maxSpeed--;
-        maxSpeed = constrain(maxSpeed, 1, 20);
     }
 }
