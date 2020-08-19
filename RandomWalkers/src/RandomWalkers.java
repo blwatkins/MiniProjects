@@ -1,5 +1,3 @@
-// Inspired by "Blue growth" - https://www.openprocessing.org/sketch/178381
-
 import processing.core.PApplet;
 
 public class RandomWalkers extends PApplet {
