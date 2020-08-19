@@ -48,6 +48,14 @@ Random circles that appear on the screen without overlapping.
 
 [p5.js Code](https://github.com/blwatkins/MiniProjects/tree/master/docs/NoOverlap)
 
+## Random Walkers
+
+Random walker particles that create interesting patterns on the screen.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tYj2WPTavcE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Java Code](https://github.com/blwatkins/MiniProjects/tree/master/RandomWalkers/src)
+
 ## Hexagon of Circles
 
 Using a recursive method to add circles in a hexagonal pattern.  Keyboard interaction changes the size and color of the circles and can activate a glow effect.
